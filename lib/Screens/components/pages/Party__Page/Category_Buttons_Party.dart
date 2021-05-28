@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../Error_Dev.dart';
-import '../Location.dart';
+import '../../Error_Dev.dart';
+import 'Location_Page_Party.dart';
 
-class Category_Buttons extends StatelessWidget {
-  const Category_Buttons({
+
+class Category_Buttons_Party extends StatelessWidget {
+  const Category_Buttons_Party({
     Key key,
   }) : super(key: key);
 
@@ -53,7 +54,7 @@ class Category_Buttons extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Location_Page()),
+                            builder: (context) => Location_Page_Party()),
                       );
                     },
                   ),

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/Screens/components/Error_Dev.dart';
+import 'package:graduation_project/Screens/components/pages/Cafe__Page/Cafe_Page.dart';
+import 'package:graduation_project/Screens/components/pages/Cinema__Page/Cinema_Page.dart';
+import 'package:graduation_project/Screens/components/pages/Party__Page/Party_Page.dart';
 import 'Food_page.dart';
 
 // ignore: camel_case_types
@@ -73,7 +76,7 @@ class _Home_CategoryState extends State<Home_Category> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Err_Dev()),
+                                builder: (context) => GooglrNAV_Cafe()),
                           );
                         },
                       ),
@@ -160,7 +163,7 @@ class _Home_CategoryState extends State<Home_Category> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Err_Dev()),
+                                builder: (context) => GooglrNAV_Cinema()),
                           );
                         },
                       ),
@@ -199,7 +202,7 @@ class _Home_CategoryState extends State<Home_Category> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Err_Dev()),
+                                builder: (context) => GooglrNAV_Party()),
                           );
                         },
                       ),

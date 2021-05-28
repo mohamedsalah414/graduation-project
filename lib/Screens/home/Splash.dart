@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:splashscreen/splashscreen.dart';
 import 'login.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
@@ -22,16 +20,16 @@ class _SplashState extends State<Splash> {
             splash: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/images/background.jpg"),
+                  image: AssetImage('assets/images/background.jpg'),
                   fit: BoxFit.cover,
                 ),
               ),
               child: Hero(
-                  tag: "logo", child: Image.asset("assets/images/logo.png")),
+                  tag: 'logo', child: Image.asset('assets/images/logo.png')),
             ),
             nextScreen: Login(),
             //splashTransition: SplashTransition.fadeTransition,
-            pageTransitionType: PageTransitionType.scale,
+            //pageTransitionType: PageTransitionType.scale,
             backgroundColor: Colors.white));
   }
 }

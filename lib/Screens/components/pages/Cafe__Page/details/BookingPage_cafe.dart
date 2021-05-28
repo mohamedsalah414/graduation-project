@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/Screens/components/components/models/menu.dart';
 import 'package:graduation_project/Screens/components/components/models/resturants.dart';
+import 'package:graduation_project/Screens/components/pages/Cafe__Page/models/cafe.dart';
 
-class BookingPage extends StatelessWidget {
+class BookingPage_cafe extends StatelessWidget {
   menuMAC menuMac;
-  Resturant resturant;
+  Cafe cafe;
 
-  BookingPage(this.resturant);
+  BookingPage_cafe(this.cafe);
   @override
   Widget build(BuildContext context) {
     DateTime selectedDate = DateTime.now();
@@ -39,11 +40,11 @@ class BookingPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                resturant.name,
+                cafe.name,
                 style: TextStyle(fontSize: 34, fontWeight: FontWeight.w800),
               ),
               Text(
-                resturant.speciality,
+                cafe.speciality,
                 style: TextStyle(
                     fontSize: 19,
                     fontStyle: FontStyle.italic,

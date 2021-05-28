@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:graduation_project/Screens/components/Home_category.dart';
-import 'package:splashscreen/splashscreen.dart';
+import 'package:graduation_project/Screens/home/components/Create_Acc.dart';
+//import 'package:splashscreen/splashscreen.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -122,7 +123,10 @@ class _LoginState extends State<Login> {
                                 fontSize: 18,
                               ),
                             ),
-                            onPressed: () {},
+                            onPressed: () {Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Create_Acc()),
+                            );},
                             color: Color(0xff6BB7BF),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5.0),

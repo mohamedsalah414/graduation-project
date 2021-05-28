@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/Screens/components/components/models/menu.dart';
 import 'package:graduation_project/Screens/components/components/models/resturants.dart';
+import 'package:graduation_project/Screens/components/pages/Cafe__Page/models/cafe.dart';
+import 'package:graduation_project/Screens/components/pages/Party__Page/models/cafe.dart';
 
-class BookingPage extends StatelessWidget {
+class DeliveryPage_Party extends StatelessWidget {
   menuMAC menuMac;
-  Resturant resturant;
+  Party party;
 
-  BookingPage(this.resturant);
+  DeliveryPage_Party(this.party);
   @override
   Widget build(BuildContext context) {
-    DateTime selectedDate = DateTime.now();
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -27,7 +28,7 @@ class BookingPage extends StatelessWidget {
             },
           ),
           centerTitle: true,
-          title: Text('Booking')
+          title: Text('Delivery')
           //Text("Food"),
 
           ),
@@ -39,11 +40,11 @@ class BookingPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                resturant.name,
+                party.name,
                 style: TextStyle(fontSize: 34, fontWeight: FontWeight.w800),
               ),
               Text(
-                resturant.speciality,
+                party.speciality,
                 style: TextStyle(
                     fontSize: 19,
                     fontStyle: FontStyle.italic,
@@ -66,15 +67,18 @@ class BookingPage extends StatelessWidget {
                     fontStyle: FontStyle.italic,
                     color: Color(0xff283e66)),
               ),
-              Text(
-                'Address',
-                style: TextStyle(
-                    fontSize: 19,
-                    fontStyle: FontStyle.italic,
-                    color: Color(0xff283e66)),
-              ),
               SizedBox(
                 height: 15,
+              ),
+              SizedBox(
+                width: size.width - 150,
+                child: TextField(
+                  decoration: InputDecoration(
+                    focusColor: Color(0xff283e66),
+                    hintText: 'Address',
+                    labelText: 'Address',
+                  ),
+                ),
               ),
               IconButton(
                   padding: EdgeInsets.all(15),
@@ -88,14 +92,33 @@ class BookingPage extends StatelessWidget {
                 height: 15,
               ),
               Text(
-                'Branch',
+                'Your Order',
                 style: TextStyle(color: Colors.grey),
               ),
               SizedBox(
                 height: 7,
               ),
               BuildDropDown(),
-              DatePICKer(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  //GenreFood(),
+                   Genre_Button(),
+                   SizedBox(
+                    width: 15,
+                  ),
+                   Genre_Button(),
+
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                'Combo',
+                style: TextStyle(color: Colors.grey),
+              ),
               SizedBox(
                 height: 15,
               ),
@@ -103,20 +126,36 @@ class BookingPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  //GenreFood(),
-                  Genre_Button(),
+                  Text(
+                    'Fries',
+                    style: TextStyle(color: Colors.grey),
+                  ),
                   SizedBox(
                     width: 15,
                   ),
-                  Genre_Button(),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  Genre_Button(),
+                  BuildDropDown(),
                 ],
               ),
               SizedBox(
-                height: 100,
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Drink',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  SizedBox(
+                    width: 15,
+                  ),
+                  BuildDropDown(),
+
+                ],
+              ),
+              SizedBox(
+                height: 50,
               ),
               Request(),
             ],
@@ -127,53 +166,6 @@ class BookingPage extends StatelessWidget {
   }
 }
 
-class DatePICKer extends StatefulWidget {
-  @override
-  _DatePICKerState createState() => _DatePICKerState();
-}
-
-class _DatePICKerState extends State<DatePICKer> {
-  var selectedDate;
-
-  @override
-  Widget build(BuildContext context) {
-    DateTime selectedDate = DateTime.now();
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        // Text(
-        //   "${selectedDate.toLocal()}".split(' ')[0],
-        //   style: TextStyle(fontSize: 55, fontWeight: FontWeight.bold),
-        // ),
-        SizedBox(
-          height: 20.0,
-        ),
-        // ignore: deprecated_member_use
-        RaisedButton(
-          onPressed: () => _selectDate(context),
-          color: Color(0xff283e66), // Refer step 3
-          child: Text(
-            'Select date',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-        ),
-      ],
-    );
-  }
-
-  _selectDate(BuildContext context) async {
-    final picked = await showDatePicker(
-      context: context,
-      initialDate: selectedDate, // Refer step 1
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2025),
-    );
-    if (picked != null && picked != selectedDate) ;
-    setState(() {
-      selectedDate = picked;
-    });
-  }
-}
 
 // enum SingingCharacter { lafayette, jefferson }
 //
@@ -255,6 +247,7 @@ class _BuildDropDownState extends State<BuildDropDown> {
 }
 
 class Genre_Button extends StatefulWidget {
+
   @override
   _Genre_ButtonState createState() => _Genre_ButtonState();
 }
@@ -269,10 +262,7 @@ class _Genre_ButtonState extends State<Genre_Button> {
       elevation: 3,
       color: _hasBeenPressed ? Color(0xff283e66) : Colors.white,
       child: Text('Genere',
-          style: TextStyle(
-            fontSize: 22,
-            color: _hasBeenPressed ? Colors.white : Color(0xff283e66),
-          )),
+          style: TextStyle(fontSize: 22, color: _hasBeenPressed ? Colors.white : Color(0xff283e66),)),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
@@ -289,7 +279,6 @@ class _Genre_ButtonState extends State<Genre_Button> {
     );
   }
 }
-
 class Request extends StatefulWidget {
   @override
   _RequestState createState() => _RequestState();
