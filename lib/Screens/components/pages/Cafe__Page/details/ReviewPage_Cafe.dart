@@ -1,11 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/Screens/components/pages/Party__Page/models/menu.dart';
+import 'package:graduation_project/Screens/components/pages/Cafe__Page/models/reviews.dart';
 
-class MenuPage_Party extends StatelessWidget {
+
+class ReviewPage_Cinema extends StatelessWidget {
+  //const ReviewPage_Cinema({Key? key}) : super(key: key);
+  TextEditingController _textFieldController = TextEditingController();
+
+  _displayDialog(BuildContext context) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Write Your review'),
+            content: TextField(
+              controller: _textFieldController,
+              textInputAction: TextInputAction.go,
+              keyboardType: TextInputType.multiline,
+              decoration: InputDecoration(hintText: 'Enter your comment'),
+            ),
+            actions: <Widget>[
+              new FlatButton(
+                child: new Text('Submit'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Color(0xff283e66),
@@ -21,26 +47,38 @@ class MenuPage_Party extends StatelessWidget {
             },
           ),
           centerTitle: true,
-          title: Text('Menu')
-          //Text("Food"),
+          title: Text('Reviews')
+        //Text("Food"),
 
-          ),
+      ),
       body: ListView(
-          children: menuMACs.map((e) {
-        return Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            width: size.width,
-            height: size.height / 7,
-            // color: Colors.blue,
-            child: menuCard(e),
-          ),
-        );
-      }).toList()),
+          children: review.map((e) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: size.width,
+                height: size.height / 7,
+                // color: Colors.blue,
+                child: menuCard(e),
+              ),
+            );
+          }).toList()
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        backgroundColor: Color(0xff283e66),
+        onPressed: ()=>_displayDialog(context),
+        // {
+        //   //TextFieldAlertDialog();
+        //   Navigator.push(
+        //     context,
+        //     MaterialPageRoute(builder: (context) => TextFieldAlertDialog()),
+        //   );
+        // }
+      ),
     );
   }
-
-  Widget menuCard(menuMAC menuMac) {
+  Widget menuCard(ListCafe_reviews reviews) {
     return GestureDetector(
       // onTap: () {
       //   Navigator.of(context)
@@ -63,7 +101,7 @@ class MenuPage_Party extends StatelessWidget {
                   // child: Image.asset('assets/images/1.jpg'),
                   backgroundColor: Colors.white,
 
-                  backgroundImage: AssetImage(menuMac.urlPhoto),
+                  backgroundImage: AssetImage(reviews.picprofile),
                   radius: 40,
                 ),
               ),
@@ -73,14 +111,14 @@ class MenuPage_Party extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  menuMac.name,
+                  reviews.name,
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 22,
                   ),
                 ),
                 Text(
-                  menuMac.genre,
+                  reviews.comment,
                   style: TextStyle(
                       color: Color(0xff283e66),
                       fontSize: 18,
@@ -92,10 +130,10 @@ class MenuPage_Party extends StatelessWidget {
               width: 45,
             ),
             Text(
-              '${menuMac.price.toString()} LE',
+              reviews.date,
               style: TextStyle(
-                  fontSize: 25,
-                  color: Color(0xff283e66),
+                  fontSize: 16,
+                  color: Colors.grey,
                   fontWeight: FontWeight.w700),
             )
           ],
@@ -103,4 +141,5 @@ class MenuPage_Party extends StatelessWidget {
       ),
     );
   }
+
 }

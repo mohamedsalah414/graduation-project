@@ -1,16 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/Screens/components/pages/Cinema__Page/details/BookingPage_cinema1.dart';
-import 'package:graduation_project/Screens/components/pages/Cinema__Page/models/menu.dart';
+import 'package:graduation_project/Screens/components/pages/Cafe__Page/models/menu.dart';
 
-import 'BookingPage_cinema.dart';
-
-
-class MenuPage_Cinema extends StatefulWidget {
-  @override
-  _MenuPage_CinemaState createState() => _MenuPage_CinemaState();
-}
-
-class _MenuPage_CinemaState extends State<MenuPage_Cinema> {
+class MenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -49,13 +40,12 @@ class _MenuPage_CinemaState extends State<MenuPage_Cinema> {
     );
   }
 
-  Widget menuCard(ListCinema listcinema) {
+  Widget menuCard(menuCafe menuMac) {
     return GestureDetector(
-
-      onTap: () {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (_) => BookingPage_Cinema1(listcinema)));
-      },
+      // onTap: () {
+      //   Navigator.of(context)
+      //       .push(MaterialPageRoute(builder: (_) => Resturant_Details(resturant)));
+      // },
       child: Card(
         elevation: 5,
         shadowColor: Colors.grey.shade50,
@@ -69,15 +59,12 @@ class _MenuPage_CinemaState extends State<MenuPage_Cinema> {
               padding: const EdgeInsets.all(8.0),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Hero(
-                  tag: 'avatarLogo${listcinema.id}',
-                  child: CircleAvatar(
-                    // child: Image.asset('assets/images/1.jpg'),
-                    backgroundColor: Colors.white,
+                child: CircleAvatar(
+                  // child: Image.asset('assets/images/1.jpg'),
+                  backgroundColor: Colors.white,
 
-                    backgroundImage: AssetImage(listcinema.urlPhoto),
-                    radius: 40,
-                  ),
+                  backgroundImage: AssetImage(menuMac.urlPhoto),
+                  radius: 40,
                 ),
               ),
             ),
@@ -86,14 +73,14 @@ class _MenuPage_CinemaState extends State<MenuPage_Cinema> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  listcinema.name,
+                  menuMac.name,
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 22,
                   ),
                 ),
                 Text(
-                  listcinema.genre,
+                  menuMac.genre,
                   style: TextStyle(
                       color: Color(0xff283e66),
                       fontSize: 18,
@@ -104,13 +91,13 @@ class _MenuPage_CinemaState extends State<MenuPage_Cinema> {
             SizedBox(
               width: 45,
             ),
-            // Text(
-            //   '${menuMac.price.toString()} LE',
-            //   style: TextStyle(
-            //       fontSize: 25,
-            //       color: Color(0xff283e66),
-            //       fontWeight: FontWeight.w700),
-            // )
+            Text(
+              '${menuMac.price.toString()} LE',
+              style: TextStyle(
+                  fontSize: 25,
+                  color: Color(0xff283e66),
+                  fontWeight: FontWeight.w700),
+            )
           ],
         ),
       ),

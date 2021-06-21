@@ -48,7 +48,7 @@ class  _GooglrNAV_CinemaState  extends State<GooglrNAV_Cinema> {
             },
           ),
           centerTitle: true,
-          title: Text("Food")
+          title: Text('Cinema')
         //Text("Food"),
 
       ),

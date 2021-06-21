@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/Screens/components/pages/Party__Page/models/cafe.dart';
-import 'package:graduation_project/Screens/components/pages/Party__Page/models/menu.dart';
 
-class DeliveryPage_Party extends StatelessWidget {
-  menuMAC menuMac;
-  Party party;
+import 'package:graduation_project/Screens/components/pages/Cafe__Page/models/menu.dart';
+import 'package:graduation_project/Screens/components/pages/Food__page/models/resturants.dart';
 
-  DeliveryPage_Party(this.party);
+class DeliveryPage extends StatelessWidget {
+  menuCafe menuMac;
+  Resturant resturant;
+
+  DeliveryPage(this.resturant);
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -38,11 +39,11 @@ class DeliveryPage_Party extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                party.name,
+                resturant.name,
                 style: TextStyle(fontSize: 34, fontWeight: FontWeight.w800),
               ),
               Text(
-                party.speciality,
+                resturant.speciality,
                 style: TextStyle(
                     fontSize: 19,
                     fontStyle: FontStyle.italic,

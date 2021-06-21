@@ -3,7 +3,7 @@ import 'package:graduation_project/Screens/components/Error_Dev.dart';
 import 'package:graduation_project/Screens/components/pages/Cafe__Page/Cafe_Page.dart';
 import 'package:graduation_project/Screens/components/pages/Cinema__Page/Cinema_Page.dart';
 import 'package:graduation_project/Screens/components/pages/Party__Page/Party_Page.dart';
-import 'Food_page.dart';
+import 'pages/Food__page/Food_page.dart';
 
 // ignore: camel_case_types
 class Home_Category extends StatefulWidget {

@@ -48,7 +48,7 @@ class  _GooglrNAV_CafeState  extends State<GooglrNAV_Cafe> {
             },
           ),
           centerTitle: true,
-          title: Text("Food")
+          title: Text('Cafe')
         //Text("Food"),
 
       ),

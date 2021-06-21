@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:search_widget/search_widget.dart';
 
-// ignore: camel_case_types
-class Search_Page_Cinema extends StatelessWidget {
-  const Search_Page_Cinema({
+class Search_Page extends StatelessWidget {
+  const Search_Page({
     Key key,
   }) : super(key: key);
 

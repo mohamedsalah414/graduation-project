@@ -3,17 +3,16 @@ import 'package:graduation_project/Screens/components/pages/Cafe__Page/details/B
 import 'package:graduation_project/Screens/components/pages/Cafe__Page/models/menu.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:graduation_project/Screens/components/pages/Cafe__Page/models/cafe.dart';
+import 'package:graduation_project/Screens/components/pages/Food__page/details/MenuPage.dart';
 import 'package:graduation_project/Screens/components/pages/Party__Page/details/BookingPage_party.dart';
 import 'package:graduation_project/Screens/components/pages/Party__Page/models/cafe.dart';
-import 'package:graduation_project/Screens/details/DeliveryPage.dart';
-import 'package:graduation_project/Screens/details/MenuPage.dart';
 
-import '../../../../details/BookingPage.dart';
 import 'DeliveryPage_party.dart';
+import 'ReviewPage_Party.dart';
 
 class Party_Details extends StatelessWidget {
   Party party;
-  menuMAC menuMac;
+  menuCafe menuMac;
 
 
   Party_Details(this.party,);
@@ -245,7 +244,10 @@ class Party_Details extends StatelessWidget {
                 ),
 
                 onPressed: () {
-
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ReviewPage_Party()),
+                  );
                   // Navigator.push(
                   //   context,
                   //   MaterialPageRoute(builder: (context) => GooglrNAV()),

@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/Screens/components/pages/Cafe__Page/details/BookingPage_cafe.dart';
-import 'package:graduation_project/Screens/components/pages/Cafe__Page/models/menu.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:graduation_project/Screens/components/pages/Cafe__Page/models/cafe.dart';
-import 'package:graduation_project/Screens/components/pages/Cinema__Page/details/BookingPage_cinema.dart';
 import 'package:graduation_project/Screens/components/pages/Cinema__Page/models/cinema.dart';
-import 'package:graduation_project/Screens/details/DeliveryPage.dart';
-import 'package:graduation_project/Screens/details/MenuPage.dart';
+import 'package:graduation_project/Screens/components/pages/Cinema__Page/models/menu.dart';
+import 'package:graduation_project/Screens/components/pages/Cinema__page/details/MenuPage.dart';
 
-import '../../../../details/BookingPage.dart';
 import 'DeliveryPage_cinema.dart';
+import 'ReviewPage_Cinema.dart';
 
 class Cinema_Details extends StatelessWidget {
   Cinema cinema;
-  menuMAC menuMac;
+  ListCinema listcinema;
 
 
   Cinema_Details(this.cinema,);
@@ -107,14 +103,14 @@ class Cinema_Details extends StatelessWidget {
                 child: Row(
                   children: [
                     Icon(
-                      Icons.restaurant_menu,
+                      Icons.local_movies,
                       size: 35,
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                     ),
                     Text(
-                      'MENU',
+                      'LIST',
                       style: TextStyle(
                         fontWeight: FontWeight.w800,
                         fontSize: 23,
@@ -128,92 +124,92 @@ class Cinema_Details extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MenuPage()),
+                    MaterialPageRoute(builder: (context) => MenuPage_Cinema()),
                   );
                 },
               ),
             ),
+            // SizedBox(
+            //   height: 33,
+            // ),
+            // SizedBox(
+            //   width: 155,
+            //   height: 45,
+            //   child: RaisedButton(
+            //     color: Colors.white,
+            //     elevation: 4,
+            //     textColor: Color(0xff283e66),
+            //     child: Row(
+            //       children: [
+            //         Icon(
+            //           Icons.local_activity,
+            //           size: 35,
+            //         ),
+            //         Padding(
+            //           padding: const EdgeInsets.all(8.0),
+            //         ),
+            //         Text(
+            //           'TICKETS',
+            //           style: TextStyle(
+            //             fontWeight: FontWeight.w800,
+            //             fontSize: 16,
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //     shape: RoundedRectangleBorder(
+            //       borderRadius: BorderRadius.circular(13.0),
+            //     ),
+            //     onPressed: () {
+            //       Navigator.push(
+            //         context,
+            //         MaterialPageRoute(builder: (context) => DeliveryPage_Cinema(cinema)),
+            //       );
+            //     },
+            //   ),
+            // ),
             SizedBox(
               height: 33,
             ),
-            SizedBox(
-              width: 155,
-              height: 45,
-              child: RaisedButton(
-                color: Colors.white,
-                elevation: 4,
-                textColor: Color(0xff283e66),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.delivery_dining,
-                      size: 35,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                    ),
-                    Text(
-                      'DELIVERY',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w800,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(13.0),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => DeliveryPage_Cinema(cinema)),
-                  );
-                },
-              ),
-            ),
-            SizedBox(
-              height: 33,
-            ),
-            SizedBox(
-              width: 155,
-              height: 45,
-              child: RaisedButton(
-                color: Colors.white,
-                elevation: 4,
-                textColor: Color(0xff283e66),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.add,
-                      size: 35,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                    ),
-                    Text(
-                      'BOOKING',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w800,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(13.0),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => BookingPage_Cinema(cinema)),
-                  );
-                },
-              ),
-            ),
-            SizedBox(
-              height: 33,
-            ),
+            // SizedBox(
+            //   width: 155,
+            //   height: 45,
+            //   child: RaisedButton(
+            //     color: Colors.white,
+            //     elevation: 4,
+            //     textColor: Color(0xff283e66),
+            //     child: Row(
+            //       children: [
+            //         Icon(
+            //           Icons.add,
+            //           size: 35,
+            //         ),
+            //         Padding(
+            //           padding: const EdgeInsets.all(8.0),
+            //         ),
+            //         Text(
+            //           'BOOKING',
+            //           style: TextStyle(
+            //             fontWeight: FontWeight.w800,
+            //             fontSize: 16,
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //     shape: RoundedRectangleBorder(
+            //       borderRadius: BorderRadius.circular(13.0),
+            //     ),
+            //     onPressed: () {
+            //       Navigator.push(
+            //         context,
+            //         MaterialPageRoute(builder: (context) => BookingPage_Cinema(cinema)),
+            //       );
+            //     },
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 33,
+            // ),
             SizedBox(
               width: 155,
               height: 45,
@@ -246,10 +242,10 @@ class Cinema_Details extends StatelessWidget {
 
                 onPressed: () {
 
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => GooglrNAV()),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ReviewPage_Cafe()),
+                  );
                 },
               ),
             ),

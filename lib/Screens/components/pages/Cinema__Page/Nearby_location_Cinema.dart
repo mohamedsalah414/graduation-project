@@ -43,13 +43,13 @@ class _Nearby_location_CinemaState extends State<Nearby_location_Cinema> {
                 width: size.width,
                 height: size.height / 7,
                 // color: Colors.blue,
-                child: resturantCard(e),
+                child: cinemaCard(e),
               ),
             );
           }).toList()),
     );
   }
-  Widget resturantCard(Cinema cinema) {
+  Widget cinemaCard(Cinema cinema) {
     return GestureDetector(
       onTap: () {
         Navigator.of(context)

@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 
 import '../../Error_Dev.dart';
-import 'Location_Page_Cinema.dart';
+import 'Location.dart';
 
-
-class Category_Buttons_Cinema extends StatelessWidget {
-  const Category_Buttons_Cinema({
+class Category_Buttons extends StatelessWidget {
+  const Category_Buttons({
     Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
 
     return Padding(
       padding: const EdgeInsets.only(top: 60.0),
@@ -26,7 +25,6 @@ class Category_Buttons_Cinema extends StatelessWidget {
                 SizedBox(
                   width: 127,
                   height: 132,
-                  // ignore: deprecated_member_use
                   child: RaisedButton(
                     elevation: 13,
                     color: Colors.white,
@@ -55,7 +53,7 @@ class Category_Buttons_Cinema extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Location_Page_Cinema()),
+                            builder: (context) => Location_Page()),
                       );
                     },
                   ),

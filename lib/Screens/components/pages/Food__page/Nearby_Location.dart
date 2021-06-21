@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/Screens/components/pages/Cinema__Page/details/BookingPage_cinema1.dart';
-import 'package:graduation_project/Screens/components/pages/Cinema__Page/models/menu.dart';
 
-import 'BookingPage_cinema.dart';
+import 'details/resturant_details.dart';
+import 'models/resturants.dart';
 
-
-class MenuPage_Cinema extends StatefulWidget {
+// ignore: camel_case_types
+class Nearby_location extends StatefulWidget {
   @override
-  _MenuPage_CinemaState createState() => _MenuPage_CinemaState();
+  _Nearby_locationState createState() => _Nearby_locationState();
 }
 
-class _MenuPage_CinemaState extends State<MenuPage_Cinema> {
+// ignore: camel_case_types
+class _Nearby_locationState extends State<Nearby_location> {
+  int _selectedItem = 0;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -30,31 +31,30 @@ class _MenuPage_CinemaState extends State<MenuPage_Cinema> {
             },
           ),
           centerTitle: true,
-          title: Text('Menu')
+          title: Text('Nearby')
           //Text("Food"),
 
           ),
+      backgroundColor: Colors.white,
       body: ListView(
-          children: menuMACs.map((e) {
+          children: resturants.map((e) {
         return Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(18.0),
           child: Container(
             width: size.width,
             height: size.height / 7,
             // color: Colors.blue,
-            child: menuCard(e),
+            child: resturantCard(e),
           ),
         );
       }).toList()),
     );
   }
-
-  Widget menuCard(ListCinema listcinema) {
+  Widget resturantCard(Resturant resturant) {
     return GestureDetector(
-
       onTap: () {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (_) => BookingPage_Cinema1(listcinema)));
+            .push(MaterialPageRoute(builder: (_) => Resturant_Details(resturant)));
       },
       child: Card(
         elevation: 5,
@@ -70,12 +70,12 @@ class _MenuPage_CinemaState extends State<MenuPage_Cinema> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Hero(
-                  tag: 'avatarLogo${listcinema.id}',
+                  tag: 'avatarLogo${resturant.id}',
                   child: CircleAvatar(
                     // child: Image.asset('assets/images/1.jpg'),
                     backgroundColor: Colors.white,
 
-                    backgroundImage: AssetImage(listcinema.urlPhoto),
+                    backgroundImage: AssetImage(resturant.urlPhoto),
                     radius: 40,
                   ),
                 ),
@@ -85,32 +85,42 @@ class _MenuPage_CinemaState extends State<MenuPage_Cinema> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  listcinema.name,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 22,
-                  ),
+                Row(
+                  children: [
+                    Text(
+                      resturant.name,
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                    Icon(
+                      Icons.star,
+                      color: Color(0xffffd500),
+                    ),
+                    Text(
+                      resturant.rating.toString(),
+                      style: TextStyle(fontSize: 16, color: Color(0x770000000)),
+                    )
+                  ],
                 ),
                 Text(
-                  listcinema.genre,
+                  resturant.speciality,
                   style: TextStyle(
                       color: Color(0xff283e66),
                       fontSize: 18,
                       fontStyle: FontStyle.italic),
                 ),
+                Row(
+                  children: [
+                    Icon(Icons.add_location),
+                    Text(
+                      resturant.address,
+                      style: TextStyle(fontSize: 16, color: Color(0xff283e66)),
+                    )
+                  ],
+                )
               ],
-            ),
-            SizedBox(
-              width: 45,
-            ),
-            // Text(
-            //   '${menuMac.price.toString()} LE',
-            //   style: TextStyle(
-            //       fontSize: 25,
-            //       color: Color(0xff283e66),
-            //       fontWeight: FontWeight.w700),
-            // )
+            )
           ],
         ),
       ),

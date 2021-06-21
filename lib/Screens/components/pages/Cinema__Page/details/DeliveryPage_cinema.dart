@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/Screens/components/components/models/menu.dart';
-import 'package:graduation_project/Screens/components/components/models/resturants.dart';
-import 'package:graduation_project/Screens/components/pages/Cafe__Page/models/cafe.dart';
 import 'package:graduation_project/Screens/components/pages/Cinema__Page/models/cinema.dart';
+import 'package:graduation_project/Screens/components/pages/Cinema__Page/models/menu.dart';
 
 class DeliveryPage_Cinema extends StatelessWidget {
-  menuMAC menuMac;
+  ListCinema listcinema;
   Cinema cinema;
 
   DeliveryPage_Cinema(this.cinema);

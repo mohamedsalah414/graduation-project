@@ -14,13 +14,11 @@ class Cafe {
 }
 
 List<Cafe> cafe = [
-  Cafe('1', "Mcdonald's", 'Fast Food', 4.5, 'Elshatby',
-      'Not over there or paradise, fear the result.', 'assets/images/1.png','assets/images/10.png' , '300'),
-  Cafe('2', 'Hardees', 'Fast Food', 3.0, 'Elshatby',
-      'Not over there or paradise, fear the result.', 'assets/images/2.png','assets/images/10.png', '300'),
-  Cafe('3', 'Papa Johns', 'Pizza', 5, 'Elshatby',
-      'Not over there or paradise, fear the result.', 'assets/images/3.png','assets/images/10.png', '300'),
-  Cafe('4', 'KFC', 'Fast Food', 5, 'Elshatby',
-      'Not over there or paradise, fear the result.', 'assets/images/4.png','assets/images/10.png', '300'),
+  Cafe('11', "Costa Coffee", 'Fast Food', 4.5, 'Elshatby',
+      'Not over there or paradise, fear the result.', 'assets/images/5.png','assets/images/10.png' , '300'),
+  Cafe('12', 'MC CAFE', 'Fast Food', 3.0, 'Elshatby',
+      'Not over there or paradise, fear the result.', 'assets/images/6.png','assets/images/10.png', '300'),
+  Cafe('13', "StarBucks", 'Fast Food', 4.5, 'Elshatby',
+      'Not over there or paradise, fear the result.', 'assets/images/7.png','assets/images/10.png' , '300'),
 
 ];

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/Screens/components/pages/Party__Page/models/cafe.dart';
-import 'package:graduation_project/Screens/components/pages/Party__Page/models/menu.dart';
 
-class DeliveryPage_Party extends StatelessWidget {
-  menuMAC menuMac;
-  Party party;
+import 'package:graduation_project/Screens/components/pages/Cafe__Page/models/menu.dart';
+import 'package:graduation_project/Screens/components/pages/Food__page/models/resturants.dart';
 
-  DeliveryPage_Party(this.party);
+class BookingPage extends StatelessWidget {
+  menuCafe menuMac;
+  Resturant resturant;
+
+  BookingPage(this.resturant);
   @override
   Widget build(BuildContext context) {
+    DateTime selectedDate = DateTime.now();
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -26,7 +28,7 @@ class DeliveryPage_Party extends StatelessWidget {
             },
           ),
           centerTitle: true,
-          title: Text('Delivery')
+          title: Text('Booking')
           //Text("Food"),
 
           ),
@@ -38,11 +40,11 @@ class DeliveryPage_Party extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                party.name,
+                resturant.name,
                 style: TextStyle(fontSize: 34, fontWeight: FontWeight.w800),
               ),
               Text(
-                party.speciality,
+                resturant.speciality,
                 style: TextStyle(
                     fontSize: 19,
                     fontStyle: FontStyle.italic,
@@ -65,18 +67,15 @@ class DeliveryPage_Party extends StatelessWidget {
                     fontStyle: FontStyle.italic,
                     color: Color(0xff283e66)),
               ),
-              SizedBox(
-                height: 15,
+              Text(
+                'Address',
+                style: TextStyle(
+                    fontSize: 19,
+                    fontStyle: FontStyle.italic,
+                    color: Color(0xff283e66)),
               ),
               SizedBox(
-                width: size.width - 150,
-                child: TextField(
-                  decoration: InputDecoration(
-                    focusColor: Color(0xff283e66),
-                    hintText: 'Address',
-                    labelText: 'Address',
-                  ),
-                ),
+                height: 15,
               ),
               IconButton(
                   padding: EdgeInsets.all(15),
@@ -90,70 +89,35 @@ class DeliveryPage_Party extends StatelessWidget {
                 height: 15,
               ),
               Text(
-                'Your Order',
+                'Branch',
                 style: TextStyle(color: Colors.grey),
               ),
               SizedBox(
                 height: 7,
               ),
               BuildDropDown(),
+              DatePICKer(),
+              SizedBox(
+                height: 15,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   //GenreFood(),
-                   Genre_Button(),
-                   SizedBox(
-                    width: 15,
-                  ),
-                   Genre_Button(),
-
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                'Combo',
-                style: TextStyle(color: Colors.grey),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Fries',
-                    style: TextStyle(color: Colors.grey),
-                  ),
+                  Genre_Button(),
                   SizedBox(
                     width: 15,
                   ),
-                  BuildDropDown(),
-                ],
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Drink',
-                    style: TextStyle(color: Colors.grey),
-                  ),
+                  Genre_Button(),
                   SizedBox(
                     width: 15,
                   ),
-                  BuildDropDown(),
-
+                  Genre_Button(),
                 ],
               ),
               SizedBox(
-                height: 50,
+                height: 100,
               ),
               Request(),
             ],
@@ -164,6 +128,53 @@ class DeliveryPage_Party extends StatelessWidget {
   }
 }
 
+class DatePICKer extends StatefulWidget {
+  @override
+  _DatePICKerState createState() => _DatePICKerState();
+}
+
+class _DatePICKerState extends State<DatePICKer> {
+  var selectedDate;
+
+  @override
+  Widget build(BuildContext context) {
+    DateTime selectedDate = DateTime.now();
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        // Text(
+        //   "${selectedDate.toLocal()}".split(' ')[0],
+        //   style: TextStyle(fontSize: 55, fontWeight: FontWeight.bold),
+        // ),
+        SizedBox(
+          height: 20.0,
+        ),
+        // ignore: deprecated_member_use
+        RaisedButton(
+          onPressed: () => _selectDate(context),
+          color: Color(0xff283e66), // Refer step 3
+          child: Text(
+            'Select date',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+        ),
+      ],
+    );
+  }
+
+  _selectDate(BuildContext context) async {
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate, // Refer step 1
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2025),
+    );
+    if (picked != null && picked != selectedDate) ;
+    setState(() {
+      selectedDate = picked;
+    });
+  }
+}
 
 // enum SingingCharacter { lafayette, jefferson }
 //
@@ -245,7 +256,6 @@ class _BuildDropDownState extends State<BuildDropDown> {
 }
 
 class Genre_Button extends StatefulWidget {
-
   @override
   _Genre_ButtonState createState() => _Genre_ButtonState();
 }
@@ -260,7 +270,10 @@ class _Genre_ButtonState extends State<Genre_Button> {
       elevation: 3,
       color: _hasBeenPressed ? Color(0xff283e66) : Colors.white,
       child: Text('Genere',
-          style: TextStyle(fontSize: 22, color: _hasBeenPressed ? Colors.white : Color(0xff283e66),)),
+          style: TextStyle(
+            fontSize: 22,
+            color: _hasBeenPressed ? Colors.white : Color(0xff283e66),
+          )),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
@@ -277,6 +290,7 @@ class _Genre_ButtonState extends State<Genre_Button> {
     );
   }
 }
+
 class Request extends StatefulWidget {
   @override
   _RequestState createState() => _RequestState();

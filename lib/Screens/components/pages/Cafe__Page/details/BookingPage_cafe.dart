@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/Screens/components/components/models/menu.dart';
-import 'package:graduation_project/Screens/components/components/models/resturants.dart';
+
 import 'package:graduation_project/Screens/components/pages/Cafe__Page/models/cafe.dart';
+import 'package:graduation_project/Screens/components/pages/Cafe__Page/models/menu.dart';
 
 class BookingPage_cafe extends StatelessWidget {
-  menuMAC menuMac;
+  menuCafe menuMac;
   Cafe cafe;
 
   BookingPage_cafe(this.cafe);

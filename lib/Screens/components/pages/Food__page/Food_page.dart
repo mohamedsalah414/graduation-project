@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:graduation_project/Screens/components/pages/Food__page/Search_page.dart';
 
-import 'Category_Buttons_Party.dart';
-import 'Search_Page_Party.dart';
+import 'Category_Buttons.dart';
 
-class GooglrNAV_Party extends StatefulWidget {
+
+class GooglrNAV extends StatefulWidget {
   @override
-  _GooglrNAV_PartyState createState() => _GooglrNAV_PartyState();
+  _GooglrNAVState createState() => _GooglrNAVState();
 }
 
-class  _GooglrNAV_PartyState  extends State<GooglrNAV_Party> {
+class  _GooglrNAVState  extends State<GooglrNAV> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    Category_Buttons_Party(), //Home-Navpar
-    Search_Page_Party(), //Search-Navpar
+     Category_Buttons(), //Home-Navpar
+     Search_Page(), //Search-Navpar
     Text(
       'Favourite list is Empty\n'
           'Back-End',
@@ -48,15 +49,15 @@ class  _GooglrNAV_PartyState  extends State<GooglrNAV_Party> {
             },
           ),
           centerTitle: true,
-          title: Text('Party')
+          title: Text("Food")
         //Text("Food"),
 
       ),
 
       // body: Category_Buttons(),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
+       body: Center(
+         child: _widgetOptions.elementAt(_selectedIndex),
+       ),
       bottomNavigationBar: buildGNAV(),
     );
   }

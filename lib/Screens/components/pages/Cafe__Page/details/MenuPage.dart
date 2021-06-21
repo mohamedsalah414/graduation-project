@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/Screens/components/components/models/menu.dart';
+import 'package:graduation_project/Screens/components/pages/Cafe__Page/models/cafe.dart';
+import 'package:graduation_project/Screens/components/pages/Cafe__Page/models/menu.dart';
 
 class MenuPage_Cafe extends StatelessWidget {
   @override
@@ -40,7 +41,7 @@ class MenuPage_Cafe extends StatelessWidget {
     );
   }
 
-  Widget menuCard(menuMAC menuMac) {
+  Widget menuCard(menuCafe menucafe) {
     return GestureDetector(
       // onTap: () {
       //   Navigator.of(context)
@@ -63,7 +64,7 @@ class MenuPage_Cafe extends StatelessWidget {
                   // child: Image.asset('assets/images/1.jpg'),
                   backgroundColor: Colors.white,
 
-                  backgroundImage: AssetImage(menuMac.urlPhoto),
+                  backgroundImage: AssetImage(menucafe.urlPhoto),
                   radius: 40,
                 ),
               ),
@@ -73,14 +74,14 @@ class MenuPage_Cafe extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  menuMac.name,
+                  menucafe.name,
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 22,
                   ),
                 ),
                 Text(
-                  menuMac.genre,
+                  menucafe.genre,
                   style: TextStyle(
                       color: Color(0xff283e66),
                       fontSize: 18,
@@ -92,7 +93,7 @@ class MenuPage_Cafe extends StatelessWidget {
               width: 45,
             ),
             Text(
-              '${menuMac.price.toString()} LE',
+              '${menucafe.price.toString()} LE',
               style: TextStyle(
                   fontSize: 25,
                   color: Color(0xff283e66),

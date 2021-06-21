@@ -16,6 +16,7 @@ class _Map_LocationState extends State<Map_Location> {
   static final CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14.4746,
+
   );
 
   static final CameraPosition _kLake = CameraPosition(
@@ -46,11 +47,13 @@ class _Map_LocationState extends State<Map_Location> {
       ),
       body: GoogleMap(
 
-        mapType: MapType.hybrid,
+
+        mapType: MapType.normal,
+
          initialCameraPosition: _kGooglePlex,
-        // onMapCreated: (GoogleMapController controller) {
-        //   _controller.complete(controller);
-        // },
+        onMapCreated: (GoogleMapController controller) {
+          _controller.complete(controller);
+        },
       ),
       // floatingActionButton: FloatingActionButton.extended(
       //   onPressed: _goToTheLake,
