@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:graduation_project/Screens/components/pages/Cafe__Page/models/menu.dart';
 import 'package:graduation_project/Screens/components/pages/Food__page/details/ReviewPage_Food.dart';
+import 'package:graduation_project/Screens/components/pages/Food__page/models/menu.dart';
 import 'package:graduation_project/Screens/components/pages/Food__page/models/resturants.dart';
 
 
@@ -12,7 +13,7 @@ import 'MenuPage.dart';
 
 class Resturant_Details extends StatelessWidget {
   Resturant resturant;
-  menuCafe menuMac;
+  menuMAC menuMac;
 
 
   Resturant_Details(this.resturant,);

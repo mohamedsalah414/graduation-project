@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/Screens/components/pages/Cafe__Page/models/cafe.dart';
 import 'package:graduation_project/Screens/components/pages/Cafe__Page/models/menu.dart';
 
 class MenuPage_Cafe extends StatelessWidget {

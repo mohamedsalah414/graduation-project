@@ -1,19 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:graduation_project/Screens/components/Profile.dart';
+import 'package:graduation_project/Screens/components/models/users.dart';
 
 import 'Category_Buttons_Cafe.dart';
 import 'Search_Page_Cafe.dart';
 
 class GooglrNAV_Cafe extends StatefulWidget {
+   final Users user;
+  //
+  const GooglrNAV_Cafe({Key key, this.user}) : super(key: key);
   @override
-  _GooglrNAV_CafeState createState() => _GooglrNAV_CafeState();
+  _GooglrNAV_CafeState createState() => _GooglrNAV_CafeState( user);
 }
 
 class  _GooglrNAV_CafeState  extends State<GooglrNAV_Cafe> {
+  Users user;
+
+  //Map<Users, dynamic>  user;
+  _GooglrNAV_CafeState(this.user);
+
+  inuState(){
+    super.initState();
+    setState(() {
+       user;
+    });
+  }
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
+
     Category_Buttons_Cafe(), //Home-Navpar
     Search_Page_Cafe(), //Search-Navpar
     Text(
@@ -22,36 +39,40 @@ class  _GooglrNAV_CafeState  extends State<GooglrNAV_Cafe> {
 
       style: optionStyle,
       textAlign: TextAlign.center,
-    ), //Favourite-Navpar
-    Text(
-      'Index 3: Profile\n'
-          'Back-End',
-      style: optionStyle,
-      textAlign: TextAlign.center,
-    ) //Profile-Navpar
+    ),
+    // ProfilePage(user),
+    // Profile(user.toString()),
+    // Profile_Go(),
+    //Favourite-Navpar
+    // Text(
+    //   'Index 3: Profile\n'
+    //       'Back-End',
+    //   style: optionStyle,
+    //   textAlign: TextAlign.center,
+    // ) //Profile-Navpar
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Color(0xff283e66),
-          leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.pop(
-                context,
-              );
-            },
+        backgroundColor: Color(0xff283e66),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
           ),
-          centerTitle: true,
-          title: Text('Cafe')
-        //Text("Food"),
+          onPressed: () {
+            Navigator.pop(
+              context,
+            );
+          },
+        ),
+        centerTitle: true,
+        title: Text('Cafe')
+      //Text("Food"),
 
-      ),
+    ),
 
       // body: Category_Buttons(),
       body: Center(
@@ -111,4 +132,29 @@ class  _GooglrNAV_CafeState  extends State<GooglrNAV_Cafe> {
   }
 }
 
-
+// Card ProfilePage(Users user){
+//   Users user;
+//   //ProfilePage(this.user);
+//         BuildContext context;
+//         Navigator.push(
+//            context,
+//            MaterialPageRoute(builder: (context) => Profile(user)),
+//          );
+// }
+class Profile_Go extends StatelessWidget {
+  // const Profile_Go({Key? key}) : super(key: key);
+  // Users user;
+  // Profile_Go(this.user);
+  const Profile_Go({
+    Key key,
+  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    //       Navigator.push(
+    //         context,
+    //         MaterialPageRoute(builder: (context) => DeliveryPage_cafe(cafe)),
+    //       );
+    return Navigator(
+    );
+  }
+}

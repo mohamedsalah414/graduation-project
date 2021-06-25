@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/Screens/components/pages/Cafe__Page/details/BookingPage_cafe.dart';
 import 'package:graduation_project/Screens/components/pages/Cafe__Page/models/menu.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:graduation_project/Screens/components/pages/Cafe__Page/models/cafe.dart';
@@ -7,7 +6,6 @@ import 'package:graduation_project/Screens/components/pages/Cafe__Page/models/ca
 import 'package:graduation_project/Screens/components/pages/Cafe__page/details/MenuPage.dart';
 import 'package:graduation_project/Screens/components/pages/Cinema__Page/details/ReviewPage_Cinema.dart';
 
-import 'DeliveryPage_cafe.dart';
 
 class Cafe_Details extends StatelessWidget {
   Cafe cafe;

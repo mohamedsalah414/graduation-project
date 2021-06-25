@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:graduation_project/Screens/components/pages/Cafe__Page/models/menu.dart';
+import 'package:graduation_project/Screens/components/pages/Food__page/models/menu.dart';
 import 'package:graduation_project/Screens/components/pages/Food__page/models/resturants.dart';
 
 class DeliveryPage extends StatelessWidget {
-  menuCafe menuMac;
+  menuMAC menuMac;
   Resturant resturant;
 
   DeliveryPage(this.resturant);

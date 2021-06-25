@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/Screens/components/pages/Cafe__Page/details/BookingPage_cafe.dart';
-import 'package:graduation_project/Screens/components/pages/Cafe__Page/models/menu.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:graduation_project/Screens/components/pages/Cafe__Page/models/cafe.dart';
-import 'package:graduation_project/Screens/components/pages/Food__page/details/MenuPage.dart';
-import 'package:graduation_project/Screens/components/pages/Party__Page/details/BookingPage_party.dart';
-import 'package:graduation_project/Screens/components/pages/Party__Page/models/cafe.dart';
+import 'package:graduation_project/Screens/components/pages/Party__Page/models/menu.dart';
+import 'package:graduation_project/Screens/components/pages/Party__Page/models/party.dart';
 
 import 'DeliveryPage_party.dart';
+import 'MenuPage.dart';
 import 'ReviewPage_Party.dart';
 
 class Party_Details extends StatelessWidget {
   Party party;
-  menuCafe menuMac;
+  ListParty listparty;
 
 
   Party_Details(this.party,);
@@ -94,7 +91,7 @@ class Party_Details extends StatelessWidget {
                   color: Color(0xff283e66),
                 )),
             SizedBox(
-              height: 20,
+              height: 60,
             ),
             SizedBox(
               width: 155,
@@ -104,16 +101,17 @@ class Party_Details extends StatelessWidget {
                 elevation: 4,
                 textColor: Color(0xff283e66),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      Icons.restaurant_menu,
+                      Icons.local_activity,
                       size: 35,
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                     ),
                     Text(
-                      'MENU',
+                      'List',
                       style: TextStyle(
                         fontWeight: FontWeight.w800,
                         fontSize: 23,
@@ -127,7 +125,7 @@ class Party_Details extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MenuPage()),
+                    MaterialPageRoute(builder: (context) => MenuPage_Party()),
                   );
                 },
               ),
@@ -135,84 +133,84 @@ class Party_Details extends StatelessWidget {
             SizedBox(
               height: 33,
             ),
-            SizedBox(
-              width: 155,
-              height: 45,
-              child: RaisedButton(
-                color: Colors.white,
-                elevation: 4,
-                textColor: Color(0xff283e66),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.delivery_dining,
-                      size: 35,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                    ),
-                    Text(
-                      'DELIVERY',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w800,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(13.0),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => DeliveryPage_Party(party)),
-                  );
-                },
-              ),
-            ),
-            SizedBox(
-              height: 33,
-            ),
-            SizedBox(
-              width: 155,
-              height: 45,
-              child: RaisedButton(
-                color: Colors.white,
-                elevation: 4,
-                textColor: Color(0xff283e66),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.add,
-                      size: 35,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                    ),
-                    Text(
-                      'BOOKING',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w800,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(13.0),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => BookingPage_party(party)),
-                  );
-                },
-              ),
-            ),
-            SizedBox(
-              height: 33,
-            ),
+            // SizedBox(
+            //   width: 155,
+            //   height: 45,
+            //   child: RaisedButton(
+            //     color: Colors.white,
+            //     elevation: 4,
+            //     textColor: Color(0xff283e66),
+            //     child: Row(
+            //       children: [
+            //         Icon(
+            //           Icons.delivery_dining,
+            //           size: 35,
+            //         ),
+            //         Padding(
+            //           padding: const EdgeInsets.all(8.0),
+            //         ),
+            //         Text(
+            //           'DELIVERY',
+            //           style: TextStyle(
+            //             fontWeight: FontWeight.w800,
+            //             fontSize: 16,
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //     shape: RoundedRectangleBorder(
+            //       borderRadius: BorderRadius.circular(13.0),
+            //     ),
+            //     onPressed: () {
+            //       Navigator.push(
+            //         context,
+            //         MaterialPageRoute(builder: (context) => DeliveryPage_Party(party)),
+            //       );
+            //     },
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 33,
+            // ),
+            // SizedBox(
+            //   width: 155,
+            //   height: 45,
+            //   child: RaisedButton(
+            //     color: Colors.white,
+            //     elevation: 4,
+            //     textColor: Color(0xff283e66),
+            //     child: Row(
+            //       children: [
+            //         Icon(
+            //           Icons.add,
+            //           size: 35,
+            //         ),
+            //         Padding(
+            //           padding: const EdgeInsets.all(8.0),
+            //         ),
+            //         Text(
+            //           'BOOKING',
+            //           style: TextStyle(
+            //             fontWeight: FontWeight.w800,
+            //             fontSize: 16,
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //     shape: RoundedRectangleBorder(
+            //       borderRadius: BorderRadius.circular(13.0),
+            //     ),
+            //     onPressed: () {
+            //       Navigator.push(
+            //         context,
+            //         MaterialPageRoute(builder: (context) => BookingPage_party(party)),
+            //       );
+            //     },
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 33,
+            // ),
             SizedBox(
               width: 155,
               height: 45,

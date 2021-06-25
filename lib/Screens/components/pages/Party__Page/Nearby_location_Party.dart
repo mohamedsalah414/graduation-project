@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'details/party_details.dart';
-import 'models/cafe.dart';
+import 'models/party.dart';
 
 // ignore: camel_case_types
 class Nearby_location_Party extends StatefulWidget {

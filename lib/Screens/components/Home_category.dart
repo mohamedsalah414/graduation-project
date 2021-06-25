@@ -1,18 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/Screens/components/Error_Dev.dart';
+import 'package:graduation_project/Screens/components/Profile.dart';
 import 'package:graduation_project/Screens/components/pages/Cafe__Page/Cafe_Page.dart';
+import 'package:graduation_project/Screens/components/pages/Cafe__Page/Category_Buttons_Cafe.dart';
+import 'package:graduation_project/Screens/components/pages/Cinema__Page/Category_Buttons_Cinema.dart';
 import 'package:graduation_project/Screens/components/pages/Cinema__Page/Cinema_Page.dart';
+import 'package:graduation_project/Screens/components/pages/Food__page/Category_Buttons.dart';
+import 'package:graduation_project/Screens/components/pages/Party__Page/Category_Buttons_Party.dart';
 import 'package:graduation_project/Screens/components/pages/Party__Page/Party_Page.dart';
+import 'models/users.dart';
 import 'pages/Food__page/Food_page.dart';
 
 // ignore: camel_case_types
 class Home_Category extends StatefulWidget {
+  final Users user;
+
+  const Home_Category({Key key, this.user}) : super(key: key);
+
   @override
-  _Home_CategoryState createState() => _Home_CategoryState();
+  _Home_CategoryState createState() => _Home_CategoryState(user);
 }
 
 // ignore: camel_case_types
 class _Home_CategoryState extends State<Home_Category> {
+  Users user;
+  _Home_CategoryState(this.user);
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -29,15 +41,40 @@ class _Home_CategoryState extends State<Home_Category> {
             ),
           ),
           child: Column(
-
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
-                width: 200,
-                height: 200,
-                child: Hero(
-                    tag: 'logo', child: Image.asset('assets/images/logo.png')),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: 200,
+                    height: 200,
+                    child: Hero(
+                        tag: 'logo',
+                        child: Image.asset('assets/images/logo.png')),
+                  ),
+                  SizedBox(
+                    width: 15,
+                  ),
+                  InkWell(
+                    borderRadius: BorderRadius.circular(5),
+
+                    // decoration: ShapeDecoration(
+                    //   color: Colors.black,
+                    //   shape: CircleBorder(),
+                    // ),
+                    child: IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ProfileScreen()),
+                          );
+                        },
+                        icon: Icon(Icons.person)),
+                  )
+                ],
               ),
               SizedBox(
                 width: size.width,
@@ -76,7 +113,7 @@ class _Home_CategoryState extends State<Home_Category> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => GooglrNAV_Cafe()),
+                                builder: (context) => Category_Buttons_Cafe()),
                           );
                         },
                       ),
@@ -115,7 +152,7 @@ class _Home_CategoryState extends State<Home_Category> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => GooglrNAV()),
+                                builder: (context) => Category_Buttons()),
                           );
                         },
                       ),
@@ -163,7 +200,7 @@ class _Home_CategoryState extends State<Home_Category> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => GooglrNAV_Cinema()),
+                                builder: (context) => Category_Buttons_Cinema()),
                           );
                         },
                       ),
@@ -202,7 +239,7 @@ class _Home_CategoryState extends State<Home_Category> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => GooglrNAV_Party()),
+                                builder: (context) => Category_Buttons_Party()),
                           );
                         },
                       ),
@@ -222,6 +259,9 @@ class _Home_CategoryState extends State<Home_Category> {
             ],
           ),
         ),
+      ),
+      drawer: Drawer(
+        child: Text("jjaja"),
       ),
     );
   }

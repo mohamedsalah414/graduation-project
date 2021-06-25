@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/Screens/components/pages/Party__Page/details/BookingPage_party.dart';
 import 'package:graduation_project/Screens/components/pages/Party__Page/models/menu.dart';
 
-class MenuPage_Party extends StatelessWidget {
+
+
+class MenuPage_Party extends StatefulWidget {
+  @override
+  _MenuPage_PartyState createState() => _MenuPage_PartyState();
+}
+
+class _MenuPage_PartyState extends State<MenuPage_Party> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -22,30 +30,31 @@ class MenuPage_Party extends StatelessWidget {
           ),
           centerTitle: true,
           title: Text('Menu')
-          //Text("Food"),
+        //Text("Food"),
 
-          ),
+      ),
       body: ListView(
-          children: menuMACs.map((e) {
-        return Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            width: size.width,
-            height: size.height / 7,
-            // color: Colors.blue,
-            child: menuCard(e),
-          ),
-        );
-      }).toList()),
+          children: listParty.map((e) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: size.width,
+                height: size.height / 7,
+                // color: Colors.blue,
+                child: menuCard(e),
+              ),
+            );
+          }).toList()),
     );
   }
 
-  Widget menuCard(menuMAC menuMac) {
+  Widget menuCard(ListParty listParty) {
     return GestureDetector(
-      // onTap: () {
-      //   Navigator.of(context)
-      //       .push(MaterialPageRoute(builder: (_) => Resturant_Details(resturant)));
-      // },
+
+      onTap: () {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (_) => BookingPage_party(listParty)));
+      },
       child: Card(
         elevation: 5,
         shadowColor: Colors.grey.shade50,
@@ -59,12 +68,15 @@ class MenuPage_Party extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: CircleAvatar(
-                  // child: Image.asset('assets/images/1.jpg'),
-                  backgroundColor: Colors.white,
+                child: Hero(
+                  tag: 'avatarLogo${listParty.id}',
+                  child: CircleAvatar(
+                    // child: Image.asset('assets/images/1.jpg'),
+                    backgroundColor: Colors.white,
 
-                  backgroundImage: AssetImage(menuMac.urlPhoto),
-                  radius: 40,
+                    backgroundImage: AssetImage(listParty.urlPhoto),
+                    radius: 40,
+                  ),
                 ),
               ),
             ),
@@ -73,14 +85,14 @@ class MenuPage_Party extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  menuMac.name,
+                  listParty.name,
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 22,
                   ),
                 ),
                 Text(
-                  menuMac.genre,
+                  listParty.genre,
                   style: TextStyle(
                       color: Color(0xff283e66),
                       fontSize: 18,
@@ -91,13 +103,13 @@ class MenuPage_Party extends StatelessWidget {
             SizedBox(
               width: 45,
             ),
-            Text(
-              '${menuMac.price.toString()} LE',
-              style: TextStyle(
-                  fontSize: 25,
-                  color: Color(0xff283e66),
-                  fontWeight: FontWeight.w700),
-            )
+            // Text(
+            //   '${menuMac.price.toString()} LE',
+            //   style: TextStyle(
+            //       fontSize: 25,
+            //       color: Color(0xff283e66),
+            //       fontWeight: FontWeight.w700),
+            // )
           ],
         ),
       ),

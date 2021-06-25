@@ -9,6 +9,24 @@ class Search_Page_Party extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xff283e66),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pop(
+              context,
+            );
+          },
+        ),
+        centerTitle: true,
+        title: Text('Search'),
+
+        //Text("Food"),
+      ),
       body: Column(
         children: [
           Padding(

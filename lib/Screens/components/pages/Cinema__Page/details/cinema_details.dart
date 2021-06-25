@@ -91,7 +91,7 @@ class Cinema_Details extends StatelessWidget {
                   color: Color(0xff283e66),
                 )),
             SizedBox(
-              height: 20,
+              height: 60,
             ),
             SizedBox(
               width: 155,
