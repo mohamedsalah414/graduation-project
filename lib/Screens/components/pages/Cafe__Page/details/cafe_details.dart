@@ -6,6 +6,8 @@ import 'package:graduation_project/Screens/components/pages/Cafe__Page/models/ca
 import 'package:graduation_project/Screens/components/pages/Cafe__page/details/MenuPage.dart';
 import 'package:graduation_project/Screens/components/pages/Cinema__Page/details/ReviewPage_Cinema.dart';
 
+import 'ReviewPage_Cafe.dart';
+
 
 class Cafe_Details extends StatelessWidget {
   Cafe cafe;

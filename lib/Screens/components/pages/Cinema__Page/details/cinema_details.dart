@@ -244,7 +244,7 @@ class Cinema_Details extends StatelessWidget {
 
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ReviewPage_Cafe()),
+                    MaterialPageRoute(builder: (context) => ReviewPage_Cinema()),
                   );
                 },
               ),

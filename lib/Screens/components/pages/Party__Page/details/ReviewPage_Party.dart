@@ -1,10 +1,25 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:graduation_project/Screens/components/pages/Party__Page/models/reviews.dart';
+import 'package:intl/intl.dart';
 
-
-class ReviewPage_Party extends StatelessWidget {
+class ReviewPage_Party extends StatefulWidget {
   //const ReviewPage_Cinema({Key? key}) : super(key: key);
-  TextEditingController _textFieldController = TextEditingController();
+  @override
+  _ReviewPage_PartyState createState() => _ReviewPage_PartyState();
+}
+
+class _ReviewPage_PartyState extends State<ReviewPage_Party> {
+  final _formkey = GlobalKey<FormState>();
+
+  final TextEditingController _textFieldController = TextEditingController();
+
+  @override
+  void dispose() {
+    _textFieldController.dispose();
+
+    super.dispose();
+  }
 
   _displayDialog(BuildContext context) async {
     return showDialog(
@@ -12,25 +27,72 @@ class ReviewPage_Party extends StatelessWidget {
         builder: (context) {
           return AlertDialog(
             title: Text('Write Your review'),
-            content: TextField(
-              controller: _textFieldController,
-              textInputAction: TextInputAction.go,
-              keyboardType: TextInputType.multiline,
-              decoration: InputDecoration(hintText: 'Enter your comment'),
+            content: Form(
+              key: _formkey,
+              child: Container(
+                height: 100,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      //key: _formkey,
+                      controller: _textFieldController,
+                      textInputAction: TextInputAction.go,
+                      keyboardType: TextInputType.multiline,
+                      decoration:
+                          InputDecoration(hintText: 'Enter your comment'),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+                        return null;
+                      },
+                    ),
+                    // SizedBox(
+                    //   height: 25,
+                    // ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        FlatButton(
+                          child: new Text('comment'),
+                          onPressed: () async {
+                            var currentUser = FirebaseAuth.instance.currentUser;
+                            if (_formkey.currentState.validate()) {
+                              DateTime datenow = DateTime.now();
+                              String formattedDate =
+                                  DateFormat('yyyy-MM-dd – kk:mm')
+                                      .format(datenow);
+
+                              var review = FirebaseFirestore.instance
+                                  .collection('partyreviews')
+                                  .doc()
+                                  .set({
+                                'comment': _textFieldController.text,
+                                'date': formattedDate,
+                                'user': {
+                                  'user': currentUser.uid,
+                                  'email': currentUser.email,
+                                  // 'name':currentUser.displayName,
+                                }
+                              });
+                            }
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
             ),
-            actions: <Widget>[
-              new FlatButton(
-                child: new Text('Submit'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              )
-            ],
           );
         });
   }
+
   @override
   Widget build(BuildContext context) {
+    final Stream<QuerySnapshot> _usersStream =
+        FirebaseFirestore.instance.collection('partyreviews').snapshots();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -48,98 +110,46 @@ class ReviewPage_Party extends StatelessWidget {
           ),
           centerTitle: true,
           title: Text('Reviews')
-        //Text("Food"),
+          //Text("Food"),
 
-      ),
-      body: ListView(
-          children: review.map((e) {
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: size.width,
-                height: size.height / 7,
-                // color: Colors.blue,
-                child: menuCard(e),
-              ),
-            );
-          }).toList()
-      ),
+          ),
+      body: StreamBuilder(
+          stream:
+              FirebaseFirestore.instance.collection('partyreviews').snapshots(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.hasError) {
+              return Text('Something went wrong');
+            }
+            if (!snapshot.hasData) return Text('Loading');
+
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Text('Loading');
+            }
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
+                return Text('Loading...');
+              default:
+                return ListView(
+                  children: snapshot.data.docs.map((DocumentSnapshot document) {
+                    Map<String, dynamic> data =
+                        document.data() as Map<String, dynamic>;
+                    return Card(
+                      child: ListTile(
+                        //shape: ,
+                        title: Text(data['comment']),
+                        trailing: Text(data['date']),
+                      ),
+                    );
+                  }).toList(),
+                );
+            }
+          }),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         backgroundColor: Color(0xff283e66),
-        onPressed: ()=>_displayDialog(context),
-        // {
-        //   //TextFieldAlertDialog();
-        //   Navigator.push(
-        //     context,
-        //     MaterialPageRoute(builder: (context) => TextFieldAlertDialog()),
-        //   );
-        // }
+        onPressed: () => _displayDialog(context),
       ),
     );
   }
-  Widget menuCard(ListParty_reviews reviews) {
-    return GestureDetector(
-      // onTap: () {
-      //   Navigator.of(context)
-      //       .push(MaterialPageRoute(builder: (_) => Resturant_Details(resturant)));
-      // },
-      child: Card(
-        elevation: 5,
-        shadowColor: Colors.grey.shade50,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(7),
-        ),
-        child: Row(
-          children: [
-            // Image.asset('assets/images/1.jpg'),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CircleAvatar(
-                  // child: Image.asset('assets/images/1.jpg'),
-                  backgroundColor: Colors.white,
-
-                  backgroundImage: AssetImage(reviews.picprofile),
-                  radius: 40,
-                ),
-              ),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  reviews.name,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 22,
-                  ),
-                ),
-                Text(
-                  reviews.comment,
-                  style: TextStyle(
-                      color: Color(0xff283e66),
-                      fontSize: 18,
-                      fontStyle: FontStyle.italic),
-                ),
-              ],
-            ),
-            SizedBox(
-              width: 45,
-            ),
-            Text(
-              reviews.date,
-              style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey,
-                  fontWeight: FontWeight.w700),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
 }

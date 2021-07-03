@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_project/Screens/home/login.dart';
 
@@ -25,17 +26,27 @@ class Setting extends StatelessWidget {
 
         //Text("Food"),
       ),
-      body: Container(
-        child: ElevatedButton(
-          child: Text('Log Out'),
-          onPressed: (){
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => Login()),
-            );
-          },
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                child: ElevatedButton(
+                  child: Text('Log Out'),
+                  onPressed: () async {
+                    await FirebaseAuth.instance.signOut();
+                    await Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => Login()));
+                  },
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
