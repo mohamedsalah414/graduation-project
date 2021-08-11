@@ -15,15 +15,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Splash(),
-
-      theme: ThemeData(primaryColor: Color(0xff283e66),
+      theme: ThemeData(
+        primaryColor: Color(0xff283e66),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
     );
   }
 }
-// void main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await Firebase.initializeApp();
-//   runApp(MyApp());
-// }

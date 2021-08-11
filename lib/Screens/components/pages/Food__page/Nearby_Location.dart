@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
+import 'Search_page.dart';
 import 'details/resturant_details.dart';
 import 'models/resturants.dart';
 
@@ -18,43 +20,58 @@ class _Nearby_locationState extends State<Nearby_location> {
 
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Color(0xff283e66),
-          leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.pop(
-                context,
-              );
-            },
+        backgroundColor: Color(0xff283e66),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
           ),
-          centerTitle: true,
-          title: Text('Nearby')
-          //Text("Food"),
-
-          ),
+          onPressed: () {
+            Navigator.pop(
+              context,
+            );
+          },
+        ),
+        centerTitle: true,
+        title: Text('Nearby'),
+        //Text("Food"),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Search_Page()),
+                );
+              },
+              icon: Icon(Icons.search))
+        ],
+      ),
       backgroundColor: Colors.white,
-      body: ListView(
-          children: resturants.map((e) {
-        return Padding(
-          padding: const EdgeInsets.all(18.0),
-          child: Container(
-            width: size.width,
-            height: size.height / 7,
-            // color: Colors.blue,
-            child: resturantCard(e),
-          ),
-        );
-      }).toList()),
+      body: Stack(children: [
+        SvgPicture.asset(
+          'assets/images/svg/undraw_breakfast_psiw.svg',
+          alignment: Alignment(3, 3.5),
+        ),
+        ListView(
+            children: resturants.map((e) {
+          return Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: Container(
+              width: size.width,
+              height: size.height / 7,
+              child: resturantCard(e),
+            ),
+          );
+        }).toList()),
+      ]),
     );
   }
+
   Widget resturantCard(Resturant resturant) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (_) => Resturant_Details(resturant)));
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (_) => Resturant_Details(resturant)));
       },
       child: Card(
         elevation: 5,
@@ -64,7 +81,6 @@ class _Nearby_locationState extends State<Nearby_location> {
         ),
         child: Row(
           children: [
-            // Image.asset('assets/images/1.jpg'),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Padding(
@@ -72,9 +88,7 @@ class _Nearby_locationState extends State<Nearby_location> {
                 child: Hero(
                   tag: 'avatarLogo${resturant.id}',
                   child: CircleAvatar(
-                    // child: Image.asset('assets/images/1.jpg'),
                     backgroundColor: Colors.white,
-
                     backgroundImage: AssetImage(resturant.urlPhoto),
                     radius: 40,
                   ),

@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/Screens/components/Error_Dev.dart';
 import 'package:graduation_project/Screens/components/Profile.dart';
-import 'package:graduation_project/Screens/components/pages/Cafe__Page/Cafe_Page.dart';
 import 'package:graduation_project/Screens/components/pages/Cafe__Page/Category_Buttons_Cafe.dart';
-import 'package:graduation_project/Screens/components/pages/Cinema__Page/Category_Buttons_Cinema.dart';
-import 'package:graduation_project/Screens/components/pages/Cinema__Page/Cinema_Page.dart';
 import 'package:graduation_project/Screens/components/pages/Food__page/Category_Buttons.dart';
-import 'package:graduation_project/Screens/components/pages/Party__Page/Category_Buttons_Party.dart';
-import 'package:graduation_project/Screens/components/pages/Party__Page/Party_Page.dart';
 import 'models/users.dart';
-import 'pages/Food__page/Food_page.dart';
+import 'pages/Cinema__Page/Nearby_location_Cinema.dart';
+import 'pages/Party__Page/Nearby_location_Party.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 // ignore: camel_case_types
 class Home_Category extends StatefulWidget {
@@ -200,7 +196,8 @@ class _Home_CategoryState extends State<Home_Category> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Category_Buttons_Cinema()),
+                                builder: (context) =>
+                                    Nearby_location_Cinema()),
                           );
                         },
                       ),
@@ -239,7 +236,7 @@ class _Home_CategoryState extends State<Home_Category> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Category_Buttons_Party()),
+                                builder: (context) => Nearby_location_Party()),
                           );
                         },
                       ),
@@ -252,16 +249,13 @@ class _Home_CategoryState extends State<Home_Category> {
                 child: Container(
                   alignment: Alignment.bottomCenter,
                   child: SizedBox(
-                      child: Image.asset('assets/images/13067.png'),
-                      height: size.height / 5),
+                      height: size.height / 5,
+                      child: SvgPicture.asset('assets/images/svg/undraw_Street_food_re_uwex.svg')),
                 ),
               ),
             ],
           ),
         ),
-      ),
-      drawer: Drawer(
-        child: Text("jjaja"),
       ),
     );
   }

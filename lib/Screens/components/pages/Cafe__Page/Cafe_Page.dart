@@ -40,16 +40,6 @@ class  _GooglrNAV_CafeState  extends State<GooglrNAV_Cafe> {
       style: optionStyle,
       textAlign: TextAlign.center,
     ),
-    // ProfilePage(user),
-    // Profile(user.toString()),
-    // Profile_Go(),
-    //Favourite-Navpar
-    // Text(
-    //   'Index 3: Profile\n'
-    //       'Back-End',
-    //   style: optionStyle,
-    //   textAlign: TextAlign.center,
-    // ) //Profile-Navpar
   ];
 
   @override

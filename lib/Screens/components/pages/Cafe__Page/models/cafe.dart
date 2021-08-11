@@ -21,4 +21,5 @@ List<Cafe> cafe = [
   Cafe('13', "StarBucks", 'Fast Food', 4.5, 'Elshatby',
       'Not over there or paradise, fear the result.', 'assets/images/7.png','assets/images/10.png' , '300'),
 
+
 ];

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'Search_Page_Cafe.dart';
 import 'details/cafe_details.dart';
 import 'models/cafe.dart';
 
@@ -17,38 +19,55 @@ class _Nearby_location_CafeState extends State<Nearby_location_Cafe> {
 
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Color(0xff283e66),
-          leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.pop(
-                context,
-              );
-            },
+        backgroundColor: Color(0xff283e66),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
           ),
-          centerTitle: true,
-          title: Text('Nearby')
+          onPressed: () {
+            Navigator.pop(
+              context,
+            );
+          },
+        ),
+        centerTitle: true,
+        title: Text('Nearby'),
         //Text("Food"),
-
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Search_Page_Cafe()),
+                );
+              },
+              icon: Icon(Icons.search))
+        ],
       ),
       backgroundColor: Colors.white,
-      body: ListView(
-          children: cafe.map((e) {
-            return Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Container(
-                width: size.width,
-                height: size.height / 7,
-                // color: Colors.blue,
-                child: resturantCard(e),
-              ),
-            );
-          }).toList()),
+      body: Stack(children: [
+        // SvgPicture.asset('assets/images/svg/patterncafe.svg',fit: BoxFit.fill,),
+        SvgPicture.asset(
+          'assets/images/svg/undraw_Street_food_re_uwex.svg',
+          alignment: Alignment(4, 4),
+        ),
+        ListView(
+            children: cafe.map((e) {
+          return Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: Container(
+              width: size.width,
+              height: size.height / 7,
+              // color: Colors.blue,
+              child: resturantCard(e),
+            ),
+          );
+        }).toList()),
+      ]),
     );
   }
+
   Widget resturantCard(Cafe cafe) {
     return GestureDetector(
       onTap: () {

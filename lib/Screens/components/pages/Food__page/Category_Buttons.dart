@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:graduation_project/Screens/components/components/Map_Location.dart';
+import 'package:graduation_project/Screens/components/offers.dart';
 import 'package:graduation_project/Screens/components/pages/Cafe__Page/Search_Page_Cafe.dart';
 
 import '../../Error_Dev.dart';
 import 'Location.dart';
+import 'Nearby_Location.dart';
 import 'Search_page.dart';
 
 class Category_Buttons extends StatelessWidget {
@@ -29,16 +33,16 @@ class Category_Buttons extends StatelessWidget {
           },
         ),
         centerTitle: true,
-        title: Text('Cafe'),
+        title: Text('Food'),
         actions: [
           IconButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Search_Page()),
+                  MaterialPageRoute(builder: (context) => Map_Location()),
                 );
               },
-              icon: Icon(Icons.search))
+              icon: Icon(Icons.location_pin))
         ],
         //Text("Food"),
       ),
@@ -83,7 +87,7 @@ class Category_Buttons extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Location_Page()),
+                              builder: (context) => Nearby_location()),
                         );
                       },
                     ),
@@ -122,7 +126,7 @@ class Category_Buttons extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Err_Dev()),
+                              builder: (context) => Offers()),
                         );
                       },
                     ),
@@ -175,6 +179,18 @@ class Category_Buttons extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+            SizedBox(
+              height: 65,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 18.0),
+              child: Container(
+                alignment: Alignment.bottomCenter,
+                child: SizedBox(
+                    height: size.height / 4,
+                    child: SvgPicture.asset('assets/images/svg/undraw_eating_together_tjhx.svg')),
+              ),
             ),
           ],
         ),

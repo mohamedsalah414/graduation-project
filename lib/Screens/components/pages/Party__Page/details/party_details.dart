@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:graduation_project/Screens/components/pages/Party__Page/models/menu.dart';
 import 'package:graduation_project/Screens/components/pages/Party__Page/models/party.dart';
-
-import 'DeliveryPage_party.dart';
 import 'MenuPage.dart';
 import 'ReviewPage_Party.dart';
 

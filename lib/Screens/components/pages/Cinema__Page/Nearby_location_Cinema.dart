@@ -30,7 +30,7 @@ class _Nearby_location_CinemaState extends State<Nearby_location_Cinema> {
             },
           ),
           centerTitle: true,
-          title: Text('Nearby')
+          title: Text('Cinema')
         //Text("Food"),
 
       ),

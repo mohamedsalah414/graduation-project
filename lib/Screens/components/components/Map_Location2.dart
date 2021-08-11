@@ -26,6 +26,7 @@ class _Map_LocationState extends State<Map_Location> {
       }
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,18 +45,19 @@ class _Map_LocationState extends State<Map_Location> {
           ),
           centerTitle: true,
           title: Text("Map")
-        //Text("Food"),
+          //Text("Food"),
 
-      ),
+          ),
       body: GoogleMap(
+        myLocationEnabled: true,
         onMapCreated: _onMapCreated,
+        mapType: MapType.normal,
         initialCameraPosition: CameraPosition(
           target: const LatLng(0, 0),
           zoom: 2,
         ),
         markers: _markers.values.toSet(),
       ),
-
     );
   }
 }

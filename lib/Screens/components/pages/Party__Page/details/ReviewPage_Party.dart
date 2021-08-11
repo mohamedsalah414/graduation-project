@@ -135,6 +135,11 @@ class _ReviewPage_PartyState extends State<ReviewPage_Party> {
                     Map<String, dynamic> data =
                         document.data() as Map<String, dynamic>;
                     return Card(
+                      elevation: 5,
+                      shadowColor: Colors.grey.shade50,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(7),
+                      ),
                       child: ListTile(
                         //shape: ,
                         title: Text(data['comment']),

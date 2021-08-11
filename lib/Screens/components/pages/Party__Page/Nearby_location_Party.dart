@@ -30,7 +30,7 @@ class _Nearby_location_PartyState extends State<Nearby_location_Party> {
             },
           ),
           centerTitle: true,
-          title: Text('Nearby')
+          title: Text('Party List')
         //Text("Food"),
 
       ),

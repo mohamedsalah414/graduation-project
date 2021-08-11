@@ -1,8 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_project/Screens/components/pages/Party__Page/details/BookingPage_party.dart';
 import 'package:graduation_project/Screens/components/pages/Party__Page/models/menu.dart';
-
-
 
 class MenuPage_Party extends StatefulWidget {
   @override
@@ -29,31 +28,64 @@ class _MenuPage_PartyState extends State<MenuPage_Party> {
             },
           ),
           centerTitle: true,
-          title: Text('Menu')
-        //Text("Food"),
+          title: Text('List')
+          //Text("Food"),
 
-      ),
-      body: ListView(
-          children: listParty.map((e) {
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: size.width,
-                height: size.height / 7,
-                // color: Colors.blue,
-                child: menuCard(e),
-              ),
-            );
-          }).toList()),
+          ),
+      body: StreamBuilder(
+          stream: FirebaseFirestore.instance
+              .collection('partiylibrary')
+              .orderBy('sort')
+              .snapshots(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.hasError) {
+              return Text('Something went wrong');
+            }
+            if (!snapshot.hasData) return Text('Loading');
+
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Text('Loading');
+            }
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
+                return Text('Loading...');
+              default:
+                return ListView(
+                  children: snapshot.data.docs.map((DocumentSnapshot document) {
+                    Map<String, dynamic> data =
+                        document.data() as Map<String, dynamic>;
+                    return Card(
+                      margin: EdgeInsets.all(15),
+                      elevation: 5,
+                      shadowColor: Colors.grey.shade50,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: ListTile(
+                        //shape: ,
+                        title: Text(
+                          data['name'],
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 17),
+                        ),
+                        trailing: Text(data['date']),
+                        leading: Text(data['time']),
+                        subtitle: Text(data['price'] + ' LE'),
+                      ),
+                    );
+                  }).toList(),
+                );
+            }
+          }),
     );
   }
 
   Widget menuCard(ListParty listParty) {
     return GestureDetector(
-
       onTap: () {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (_) => BookingPage_party(listParty)));
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (_) => BookingPage_party(listParty)));
       },
       child: Card(
         elevation: 5,
@@ -103,13 +135,6 @@ class _MenuPage_PartyState extends State<MenuPage_Party> {
             SizedBox(
               width: 45,
             ),
-            // Text(
-            //   '${menuMac.price.toString()} LE',
-            //   style: TextStyle(
-            //       fontSize: 25,
-            //       color: Color(0xff283e66),
-            //       fontWeight: FontWeight.w700),
-            // )
           ],
         ),
       ),

@@ -1,19 +1,42 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import 'package:graduation_project/Screens/components/pages/Cafe__Page/models/menu.dart';
+import 'package:graduation_project/Screens/components/components/loca.dart';
 import 'package:graduation_project/Screens/components/pages/Food__page/models/menu.dart';
 import 'package:graduation_project/Screens/components/pages/Food__page/models/resturants.dart';
+import 'package:intl/intl.dart';
+import 'package:location/location.dart';
 
-class BookingPage extends StatelessWidget {
-  menuMAC menuMac;
+class BookingPage extends StatefulWidget {
   Resturant resturant;
 
   BookingPage(this.resturant);
+
+  @override
+  _BookingPageState createState() => _BookingPageState();
+}
+
+class _BookingPageState extends State<BookingPage> {
+  menuMAC menuMac;
+
   @override
   Widget build(BuildContext context) {
-    DateTime selectedDate = DateTime.now();
-    Size size = MediaQuery.of(context).size;
 
+    Size size = MediaQuery.of(context).size;
+    DateTime currentDate = DateTime.now();
+    Future<void> _selectDate(BuildContext context) async {
+
+      final DateTime pickedDate = await showDatePicker(
+          context: context,
+          initialDate: currentDate,
+          firstDate: DateTime(2020),
+          lastDate: DateTime(2023));
+      if (pickedDate != null && pickedDate != currentDate) {
+        setState(() {
+          currentDate = pickedDate;
+          print('$currentDate');
+        });
+      }
+    }
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Color(0xff283e66),
@@ -33,188 +56,114 @@ class BookingPage extends StatelessWidget {
           //Text("Food"),
 
           ),
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Container(
-          alignment: Alignment.center,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                resturant.name,
-                style: TextStyle(fontSize: 34, fontWeight: FontWeight.w800),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Container(
+            alignment: Alignment.center,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  widget.resturant.name,
+                  style: TextStyle(fontSize: 34, fontWeight: FontWeight.w800),
+                ),
+                Text(
+                  widget.resturant.speciality,
+                  style: TextStyle(
+                      fontSize: 19,
+                      fontStyle: FontStyle.italic,
+                      color: Color(0xff283e66)),
+                ),
+                SizedBox(
+                  height: 23,
+                ),
+                Text(
+                    FirebaseAuth.instance.currentUser.email,
+                  style: TextStyle(
+                      fontSize: 19,
+                      fontStyle: FontStyle.italic,
+                      color: Color(0xff283e66)),
+                ),
+                // Text(
+                // Location.instance.getLocation().toString(),
+                //   style: TextStyle(
+                //       fontSize: 19,
+                //       fontStyle: FontStyle.italic,
+                //       color: Color(0xff283e66)),
+                // ),
+                SizedBox(
+                  height: 15,
+                ),
+                IconButton(
+                    padding: EdgeInsets.all(15),
+                    iconSize: 35,
+                    icon: Icon(
+                      Icons.my_location_outlined,
+                    ),
+                    splashRadius: 25,
+                    onPressed: () {}),
+                SizedBox(
+                  height: 15,
+                ),
+                Text(
+                  'Branch',
+                  style: TextStyle(color: Colors.grey),
+                ),
+                SizedBox(
+                  height: 7,
+                ),
+                // ElevatedButton(onPressed:(){
+                //   Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => MyLocation()),
+                //   );
+                // }, child: Text('press')),
+                BuildDropDown(),
+              RaisedButton(
+                onPressed: () {_selectDate(context);
+                  //print('$currentDate');
+
+
+                }  ,
+                child: Text('Select date'),
               ),
-              Text(
-                resturant.speciality,
-                style: TextStyle(
-                    fontSize: 19,
-                    fontStyle: FontStyle.italic,
-                    color: Color(0xff283e66)),
-              ),
-              SizedBox(
-                height: 23,
-              ),
-              Text(
-                'Profile Name',
-                style: TextStyle(
-                    fontSize: 19,
-                    fontStyle: FontStyle.italic,
-                    color: Color(0xff283e66)),
-              ),
-              Text(
-                'Mobile Phone Number',
-                style: TextStyle(
-                    fontSize: 19,
-                    fontStyle: FontStyle.italic,
-                    color: Color(0xff283e66)),
-              ),
-              Text(
-                'Address',
-                style: TextStyle(
-                    fontSize: 19,
-                    fontStyle: FontStyle.italic,
-                    color: Color(0xff283e66)),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              IconButton(
-                  padding: EdgeInsets.all(15),
-                  iconSize: 35,
-                  icon: Icon(
-                    Icons.my_location_outlined,
-                  ),
-                  splashRadius: 25,
-                  onPressed: () {}),
-              SizedBox(
-                height: 15,
-              ),
-              Text(
-                'Branch',
-                style: TextStyle(color: Colors.grey),
-              ),
-              SizedBox(
-                height: 7,
-              ),
-              BuildDropDown(),
-              DatePICKer(),
-              SizedBox(
-                height: 15,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  //GenreFood(),
-                  Genre_Button(),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  Genre_Button(),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  Genre_Button(),
-                ],
-              ),
-              SizedBox(
-                height: 100,
-              ),
-              Request(),
-            ],
+               // pick(),
+                SizedBox(
+                  height: 15,
+                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   crossAxisAlignment: CrossAxisAlignment.center,
+                //   children: [
+                //     //GenreFood(),
+                //     Genre_Button(),
+                //     SizedBox(
+                //       width: 15,
+                //     ),
+                //     Genre_Button(),
+                //     SizedBox(
+                //       width: 15,
+                //     ),
+                //     Genre_Button(),
+                //   ],
+                // ),
+                SizedBox(
+                  height: 100,
+                ),
+                Request(),
+                // Text('$currentDate'),
+                // Text('${currentDate.day}'+'/ ${currentDate.month}'),
+                // Text('${currentDate.hour}'+': ${currentDate.minute}'),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 }
-
-class DatePICKer extends StatefulWidget {
-  @override
-  _DatePICKerState createState() => _DatePICKerState();
-}
-
-class _DatePICKerState extends State<DatePICKer> {
-  var selectedDate;
-
-  @override
-  Widget build(BuildContext context) {
-    DateTime selectedDate = DateTime.now();
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        // Text(
-        //   "${selectedDate.toLocal()}".split(' ')[0],
-        //   style: TextStyle(fontSize: 55, fontWeight: FontWeight.bold),
-        // ),
-        SizedBox(
-          height: 20.0,
-        ),
-        // ignore: deprecated_member_use
-        RaisedButton(
-          onPressed: () => _selectDate(context),
-          color: Color(0xff283e66), // Refer step 3
-          child: Text(
-            'Select date',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-        ),
-      ],
-    );
-  }
-
-  _selectDate(BuildContext context) async {
-    final picked = await showDatePicker(
-      context: context,
-      initialDate: selectedDate, // Refer step 1
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2025),
-    );
-    if (picked != null && picked != selectedDate) ;
-    setState(() {
-      selectedDate = picked;
-    });
-  }
-}
-
-// enum SingingCharacter { lafayette, jefferson }
-//
-// class GenreFood extends StatefulWidget {
-//   GenreFood({Key key}) : super(key: key);
-//   @override
-//   _GenreFoodState createState() => _GenreFoodState();
-// }
-//
-// class _GenreFoodState extends State<GenreFood> {
-//   SingingCharacter _character = SingingCharacter.lafayette;
-//   @override
-//   Widget build(BuildContext context) {
-//     return Row(
-//       children: [
-//         RadioListTile<SingingCharacter>(
-//           title: const Text('Lafayette'),
-//           value: SingingCharacter.lafayette,
-//           groupValue: _character,
-//           onChanged: (SingingCharacter value) {
-//             setState(() {
-//               _character = value;
-//             });
-//           },
-//         ),
-//         RadioListTile<SingingCharacter>(
-//           title: const Text('Thomas Jefferson'),
-//           value: SingingCharacter.jefferson,
-//           groupValue: _character,
-//           onChanged: (SingingCharacter value) {
-//             setState(() {
-//               _character = value;
-//             });
-//           },
-//         ),
-//       ],
-//     );
-//   }
-// }
 class BuildDropDown extends StatefulWidget {
   @override
   _BuildDropDownState createState() => _BuildDropDownState();
@@ -228,22 +177,30 @@ class _BuildDropDownState extends State<BuildDropDown> {
     return SizedBox(
       width: 150,
       child: DropdownButton(
+
           isExpanded: true,
           // list form medium
           elevation: 15,
           value: _value,
-          items: [
-            DropdownMenuItem(
-              child: Text('one'),
-              value: 1,
-            ),
-            DropdownMenuItem(
-              child: Text('Second Item'),
-              value: 2,
-            ),
-            DropdownMenuItem(child: Text('Third Item'), value: 3),
-            DropdownMenuItem(child: Text('Fourth Item'), value: 4)
-          ],
+          // items:
+          // menuMAC.entries.map((value) {
+          //   return DropdownMenuItem(
+          //     value: value,
+          //     child: new Text(value),
+          //   );
+          // }).toList(),
+          // [
+          //   DropdownMenuItem(
+          //     child: Text('one'),
+          //     value: 1,
+          //   ),
+          //   DropdownMenuItem(
+          //     child: Text('Second Item'),
+          //     value: 2,
+          //   ),
+          //   DropdownMenuItem(child: Text('Third Item'), value: 3),
+          //   DropdownMenuItem(child: Text('Fourth Item'), value: 4)
+          // ],
           onChanged: (value) {
             {
               setState(() {
@@ -310,3 +267,33 @@ class _RequestState extends State<Request> {
         onPressed: () {});
   }
 }
+class pick extends StatefulWidget {
+  @override
+  _pickState createState() => _pickState();
+}
+class _pickState extends State<pick> {
+  DateTime currentDate = DateTime.now();
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime pickedDate = await showDatePicker(
+        context: context,
+        initialDate: currentDate,
+        firstDate: DateTime(2020),
+        lastDate: DateTime(2023));
+    if (pickedDate != null && pickedDate != currentDate) {
+      setState(() {
+        currentDate = pickedDate;
+        return('$currentDate');
+      });
+    }
+  }
+  @override
+  Widget build(BuildContext context) {
+    return
+            RaisedButton(
+              onPressed: () {_selectDate(context);
+              //print('$currentDate');
+
+              }  ,
+              child: Text('Select date'),
+            );
+        }}

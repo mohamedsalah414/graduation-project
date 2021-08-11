@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:graduation_project/Screens/components/components/Map_Location2.dart';
+import 'package:graduation_project/Screens/components/pages/Cinema__Page/models/Map_LocationC1.dart';
 import 'package:graduation_project/Screens/components/pages/Cinema__Page/models/cinema.dart';
 import 'package:graduation_project/Screens/components/pages/Cinema__Page/models/menu.dart';
 import 'package:graduation_project/Screens/components/pages/Cinema__page/details/MenuPage.dart';
-
-import 'DeliveryPage_cinema.dart';
 import 'ReviewPage_Cinema.dart';
 
 class Cinema_Details extends StatelessWidget {
   Cinema cinema;
   ListCinema listcinema;
 
-
-  Cinema_Details(this.cinema,);
+  Cinema_Details(
+    this.cinema,
+  );
   // final Resturant resturant;
   // const Resturant_Details({Key key, this.resturant}) : super(key: key);
   @override
@@ -23,7 +25,6 @@ class Cinema_Details extends StatelessWidget {
       appBar: buildAppBar(context),
       body: SingleChildScrollView(
         child: Column(
-
           children: [
             Padding(
               padding: const EdgeInsets.all(15.0),
@@ -32,6 +33,7 @@ class Cinema_Details extends StatelessWidget {
                 child: Hero(
                   tag: 'avatarLogo${cinema.id}',
                   child: Container(
+                    color: Colors.grey.shade400,
                     child: SizedBox(
                       width: 280,
                       height: 200,
@@ -129,92 +131,13 @@ class Cinema_Details extends StatelessWidget {
                 },
               ),
             ),
-            // SizedBox(
-            //   height: 33,
-            // ),
-            // SizedBox(
-            //   width: 155,
-            //   height: 45,
-            //   child: RaisedButton(
-            //     color: Colors.white,
-            //     elevation: 4,
-            //     textColor: Color(0xff283e66),
-            //     child: Row(
-            //       children: [
-            //         Icon(
-            //           Icons.local_activity,
-            //           size: 35,
-            //         ),
-            //         Padding(
-            //           padding: const EdgeInsets.all(8.0),
-            //         ),
-            //         Text(
-            //           'TICKETS',
-            //           style: TextStyle(
-            //             fontWeight: FontWeight.w800,
-            //             fontSize: 16,
-            //           ),
-            //         ),
-            //       ],
-            //     ),
-            //     shape: RoundedRectangleBorder(
-            //       borderRadius: BorderRadius.circular(13.0),
-            //     ),
-            //     onPressed: () {
-            //       Navigator.push(
-            //         context,
-            //         MaterialPageRoute(builder: (context) => DeliveryPage_Cinema(cinema)),
-            //       );
-            //     },
-            //   ),
-            // ),
             SizedBox(
               height: 33,
             ),
-            // SizedBox(
-            //   width: 155,
-            //   height: 45,
-            //   child: RaisedButton(
-            //     color: Colors.white,
-            //     elevation: 4,
-            //     textColor: Color(0xff283e66),
-            //     child: Row(
-            //       children: [
-            //         Icon(
-            //           Icons.add,
-            //           size: 35,
-            //         ),
-            //         Padding(
-            //           padding: const EdgeInsets.all(8.0),
-            //         ),
-            //         Text(
-            //           'BOOKING',
-            //           style: TextStyle(
-            //             fontWeight: FontWeight.w800,
-            //             fontSize: 16,
-            //           ),
-            //         ),
-            //       ],
-            //     ),
-            //     shape: RoundedRectangleBorder(
-            //       borderRadius: BorderRadius.circular(13.0),
-            //     ),
-            //     onPressed: () {
-            //       Navigator.push(
-            //         context,
-            //         MaterialPageRoute(builder: (context) => BookingPage_Cinema(cinema)),
-            //       );
-            //     },
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 33,
-            // ),
             SizedBox(
               width: 155,
               height: 45,
               child: RaisedButton(
-
                 color: Colors.white,
                 elevation: 4,
                 textColor: Color(0xff283e66),
@@ -239,14 +162,26 @@ class Cinema_Details extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(13.0),
                 ),
-
                 onPressed: () {
-
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ReviewPage_Cinema()),
+                    MaterialPageRoute(
+                        builder: (context) => ReviewPage_Cinema()),
                   );
                 },
+              ),
+            ),
+            SizedBox(
+              height: 55,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 18.0),
+              child: Container(
+                alignment: Alignment.bottomCenter,
+                child: SizedBox(
+                    height: size.height / 6,
+                    child: SvgPicture.asset(
+                        'assets/images/svg/undraw_movie_night_fldd.svg')),
               ),
             ),
           ],
@@ -257,61 +192,40 @@ class Cinema_Details extends StatelessWidget {
 
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
-        backgroundColor: Color(0xff283e66),
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            Navigator.pop(
-              context,
-            );
-          },
+      backgroundColor: Color(0xff283e66),
+      leading: IconButton(
+        icon: Icon(
+          Icons.arrow_back,
+          color: Colors.white,
         ),
-        centerTitle: true,
-        title: Text(cinema.name)
+        onPressed: () {
+          Navigator.pop(
+            context,
+          );
+        },
+      ),
+      centerTitle: true,
+      title: Text(cinema.name),
       //Text("Food"),
-
+      actions: [
+        IconButton(
+            onPressed: () {
+              if (cinema.id == '22') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Map_LocationC1(cinema)),
+                );
+              }else if(cinema.id == '21'){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Map_LocationC2(cinema)),
+                );
+              }
+            },
+            icon: Icon(Icons.location_pin))
+      ],
     );
   }
 }
-
-// class Resturant_Details extends StatefulWidget {
-//   final Resturant resturant;
-//   Resturant_Details(this.resturant);
-//   int _selectedItem = 0;
-//
-//   @override
-//   _Resturant_DetailsState createState() => _Resturant_DetailsState();
-// }
-//
-// class _Resturant_DetailsState extends State<Resturant_Details> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: buildAppBar(context),
-//     );
-//   }
-//
-//   AppBar buildAppBar(BuildContext context) {
-//     return AppBar(
-//         backgroundColor: Color(0xff283e66),
-//         leading: IconButton(
-//           icon: Icon(
-//             Icons.arrow_back,
-//             color: Colors.white,
-//           ),
-//           onPressed: () {
-//             Navigator.pop(
-//               context,
-//             );
-//           },
-//         ),
-//         centerTitle: true,
-//         title: Text(resturant.name)
-//         //Text("Food"),
-//
-//         );
-//   }
-// }

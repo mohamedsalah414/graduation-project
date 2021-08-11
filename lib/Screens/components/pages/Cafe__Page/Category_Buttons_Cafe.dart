@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:graduation_project/Screens/components/components/Map_Location.dart';
+import 'package:graduation_project/Screens/components/offers.dart';
 import 'package:graduation_project/Screens/components/pages/Cafe__Page/Search_Page_Cafe.dart';
 
 import '../../Error_Dev.dart';
 import 'Location_Page_Cafe.dart';
+import 'Nearby_location_Cafe.dart';
 
 class Category_Buttons_Cafe extends StatelessWidget {
   const Category_Buttons_Cafe({
@@ -34,10 +38,10 @@ class Category_Buttons_Cafe extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Search_Page_Cafe()),
+                  MaterialPageRoute(builder: (context) => Map_Location()),
                 );
               },
-              icon: Icon(Icons.search))
+              icon: Icon(Icons.location_pin))
         ],
         //Text("Food"),
       ),
@@ -82,7 +86,7 @@ class Category_Buttons_Cafe extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Location_Page_Cafe()),
+                              builder: (context) => Nearby_location_Cafe()),
                         );
                       },
                     ),
@@ -120,7 +124,7 @@ class Category_Buttons_Cafe extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Err_Dev()),
+                          MaterialPageRoute(builder: (context) => Offers_cafe()),
                         );
                       },
                     ),
@@ -173,6 +177,18 @@ class Category_Buttons_Cafe extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+            SizedBox(
+              height: 75,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 18.0),
+              child: Container(
+                alignment: Alignment.bottomCenter,
+                child: SizedBox(
+                    height: size.height / 4,
+                    child: SvgPicture.asset('assets/images/svg/undraw_coffee_break_j3of.svg')),
+              ),
             ),
           ],
         ),

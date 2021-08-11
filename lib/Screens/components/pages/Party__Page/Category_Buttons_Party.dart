@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/Screens/components/offers.dart';
 import 'package:graduation_project/Screens/components/pages/Party__Page/Search_Page_Party.dart';
 
 import '../../Error_Dev.dart';
@@ -29,18 +30,7 @@ class Category_Buttons_Party extends StatelessWidget {
           },
         ),
         centerTitle: true,
-        title: Text('Cafe'),
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Search_Page_Party()),
-                );
-              },
-              icon: Icon(Icons.search))
-        ],
-        //Text("Food"),
+        title: Text('Party'),
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 60.0),
@@ -122,7 +112,7 @@ class Category_Buttons_Party extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Err_Dev()),
+                              builder: (context) => Offers()),
                         );
                       },
                     ),

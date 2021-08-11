@@ -153,92 +153,7 @@ class BookingPage_Cinema extends StatelessWidget {
   }
 }
 
-// class DatePICKer extends StatefulWidget {
-//   @override
-//   _DatePICKerState createState() => _DatePICKerState();
-// }
-//
-// class _DatePICKerState extends State<DatePICKer> {
-//   var selectedDate;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     DateTime selectedDate = DateTime.now();
-//     return Column(
-//       mainAxisSize: MainAxisSize.min,
-//       children: <Widget>[
-//         // Text(
-//         //   "${selectedDate.toLocal()}".split(' ')[0],
-//         //   style: TextStyle(fontSize: 55, fontWeight: FontWeight.bold),
-//         // ),
-//         SizedBox(
-//           height: 20.0,
-//         ),
-//         // ignore: deprecated_member_use
-//         RaisedButton(
-//           onPressed: () => _selectDate(context),
-//           color: Color(0xff283e66), // Refer step 3
-//           child: Text(
-//             'Select date',
-//             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-//
-//   _selectDate(BuildContext context) async {
-//     final picked = await showDatePicker(
-//       context: context,
-//       initialDate: selectedDate, // Refer step 1
-//       firstDate: DateTime(2000),
-//       lastDate: DateTime(2025),
-//     );
-//     if (picked != null && picked != selectedDate) ;
-//     setState(() {
-//       selectedDate = picked;
-//     });
-//   }
-// }
 
-// enum SingingCharacter { lafayette, jefferson }
-//
-// class GenreFood extends StatefulWidget {
-//   GenreFood({Key key}) : super(key: key);
-//   @override
-//   _GenreFoodState createState() => _GenreFoodState();
-// }
-//
-// class _GenreFoodState extends State<GenreFood> {
-//   SingingCharacter _character = SingingCharacter.lafayette;
-//   @override
-//   Widget build(BuildContext context) {
-//     return Row(
-//       children: [
-//         RadioListTile<SingingCharacter>(
-//           title: const Text('Lafayette'),
-//           value: SingingCharacter.lafayette,
-//           groupValue: _character,
-//           onChanged: (SingingCharacter value) {
-//             setState(() {
-//               _character = value;
-//             });
-//           },
-//         ),
-//         RadioListTile<SingingCharacter>(
-//           title: const Text('Thomas Jefferson'),
-//           value: SingingCharacter.jefferson,
-//           groupValue: _character,
-//           onChanged: (SingingCharacter value) {
-//             setState(() {
-//               _character = value;
-//             });
-//           },
-//         ),
-//       ],
-//     );
-//   }
-// }
 class BuildDropDown extends StatefulWidget {
   @override
   _BuildDropDownState createState() => _BuildDropDownState();
@@ -298,11 +213,7 @@ class _AddState extends State<Add> {
       ),
       onPressed: () {
 
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //       builder: (context) => Location_Page()),
-        // );
+
       },
     );
   }

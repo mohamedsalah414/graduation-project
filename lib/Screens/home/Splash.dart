@@ -13,7 +13,7 @@ class _SplashState extends State<Splash> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return MaterialApp(
-        title: 'Clean Code',
+        //title: 'App',
         home: AnimatedSplashScreen(
             splashIconSize: 2000,
             duration: 1000,
@@ -28,8 +28,8 @@ class _SplashState extends State<Splash> {
                   tag: 'logo', child: Image.asset('assets/images/logo.png')),
             ),
             nextScreen: Login(),
-            //splashTransition: SplashTransition.fadeTransition,
-            //pageTransitionType: PageTransitionType.scale,
+            splashTransition: SplashTransition.fadeTransition,
+            pageTransitionType: PageTransitionType.scale,
             backgroundColor: Colors.white));
   }
 }

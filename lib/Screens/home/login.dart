@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:graduation_project/Screens/components/AdminPanel.dart';
 import 'package:graduation_project/Screens/components/Home_category.dart';
 import 'package:graduation_project/Screens/home/components/Create_Acc.dart';
 import 'package:firebase_core/firebase_core.dart';
 //import 'package:splashscreen/splashscreen.dart';
-
 
 class Login extends StatefulWidget {
   @override
@@ -16,6 +16,7 @@ class _LoginState extends State<Login> {
   void initState() {
     super.initState();
   }
+
   final _formkey = GlobalKey<FormState>();
   final TextEditingController _emailcontroller = TextEditingController();
 
@@ -125,20 +126,24 @@ class _LoginState extends State<Login> {
                                       password: _passwordcontroller.text);
                               if (result != null) {
                                 // pushReplacement
-                                //print(result);
-                                await Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Home_Category()),
-                                );
+                                if (FirebaseAuth.instance.currentUser.uid ==
+                                    'O0kTGFla4kdepOwqK15aaHO5XK33') {
+                                  await Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => AdminPanel()),
+                                  );
+                                } else {
+                                  await Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Home_Category()),
+                                  );
+                                }
                               } else {
                                 print('user not found');
                               }
                             }
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(builder: (context) => Home_Category()),
-                            // );
                           },
                           child: Text('Submit'),
                         ),
@@ -191,4 +196,35 @@ class _LoginState extends State<Login> {
       ),
     );
   }
+  //... log-in page UI and form for taking e-mail and password from users
+//...
+
+//log-in via e-mail
+//   void signIn() async {
+//     if (_formKey.currentState.validate()) {
+//       var firebaseUser = await FirebaseAuth.instance.currentUser();
+//
+//       dynamic result = await _auth.signInEmail(email, password);
+//
+//       if (result == null) { // if email is false
+//         setState(() {
+//           loading = false;
+//           error = "Wrong email";
+//         });
+//       } else if(firebaseUser.uid == "aMDsuSJ9h6eIJuWX0SvwmXJTvTJ3"){ // tried to find admin with its uid
+//         Navigator.push(context, MaterialPageRoute(builder: (context) => AdminPanel()));
+//       } else { // sends to account page
+//         var firebaseUser = await FirebaseAuth.instance.currentUser();
+//         final snapShot = await Firestore.instance.collection("membership")
+//             .document(firebaseUser.uid)
+//             .get();
+//
+//         if(snapShot.exists){ // if user has a collection, go to user screens
+//           Navigator.push(context, MaterialPageRoute(builder: (context) => AccountHome()));
+//         } else{ // if user doesn't have any collection, pop-up a dialog
+//           userInfoDialog(context);
+//         }
+//       }
+//     }
+//   }
 }
