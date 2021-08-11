@@ -15,6 +15,12 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+## Introduction:
+
+We know that when we reach a new place, we find it difficult to find the nearest entertainment places in the vicinity, so we have to ask the residents of the neighborhood or search through maps such as Google Maps or Apple Maps.
+In the first method, we may be misled or go to places that are less than our expectations, and in searching through maps, we may lose the service of knowing the prices or the sales list, so we have to go to the place or communicate with them by phone or chatting.
+Here I found the problem and its solution was to assemble both solutions in one place and through the same platform you can search for the nearest restaurant and know the menu and prices and at the same time find the opinions of former customers and you can also book or order a delivery service.
+
 ## Screenshots
 
 ![1](https://user-images.githubusercontent.com/36240402/129079516-82dbe2eb-cbd5-4e82-a6af-a7d8f4b30f30.jpg)
